@@ -1,0 +1,402 @@
+<div class="jsdoc">
+<!-- ============================== class title ============================ -->
+<!--SYMBOL=Class SC.FieldView
+				--><!-- ============================== class summary ========================== --><p class="description"><br />Extends
+					SC.Control, SC.Validatable, <a href="../symbols/SC.View.html">SC.View</a>.<br />Base view for managing a view backed by an input element.  Since the web
+  browser provides native support for editing input elements, this view
+  provides basic support for listening to changes on these input elements and
+  responding to them.
+  
+  Generally you will not work with a FieldView directly.  Instead, you should
+  use one of the subclasses implemented by your target platform such as 
+  SC.CheckboxView, SC.RadioView, SC.TextFieldView, and so on.<i>Defined in: </i> &lt;/Users/graeme/git/sproutcore/frameworks/foundation/views/field.js&gt;.</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<h2>Class Summary</h2>
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class SC.FieldView.">
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b>[[#constructor|SC.FieldView]]</b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+			</table>
+			<!-- ============================== properties summary ===================== -->
+				
+				
+				<h2>Field Summary</h2>
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class SC.FieldView.">
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isTextArea|isTextArea]]</b>
+								</div>
+								<div class="description">If YES then we use textarea instead of input.</div>
+							</td>
+						</tr>
+					
+				</table>
+				
+				<div class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/SC.View.html">SC.View</a>: </dt><dd><a href="../symbols/SC.View.html#backgroundColor">backgroundColor</a>, <a href="../symbols/SC.View.html#childViews">childViews</a>, <a href="../symbols/SC.View.html#childViewsNeedLayout">childViewsNeedLayout</a>, <a href="../symbols/SC.View.html#classNames">classNames</a>, <a href="../symbols/SC.View.html#cursor">cursor</a>, <a href="../symbols/SC.View.html#displayProperties">displayProperties</a>, <a href="../symbols/SC.View.html#isEnabled">isEnabled</a>, <a href="../symbols/SC.View.html#isKeyResponder">isKeyResponder</a>, <a href="../symbols/SC.View.html#isTextSelectable">isTextSelectable</a>, <a href="../symbols/SC.View.html#isView">isView</a>, <a href="../symbols/SC.View.html#isVisible">isVisible</a>, <a href="../symbols/SC.View.html#isVisibleInWindow">isVisibleInWindow</a>, <a href="../symbols/SC.View.html#layerLocationNeedsUpdate">layerLocationNeedsUpdate</a>, <a href="../symbols/SC.View.html#layerNeedsUpdate">layerNeedsUpdate</a>, <a href="../symbols/SC.View.html#layout">layout</a>, <a href="../symbols/SC.View.html#nextKeyView">nextKeyView</a>, <a href="../symbols/SC.View.html#page">page</a>, <a href="../symbols/SC.View.html#parentView">parentView</a>, <a href="../symbols/SC.View.html#previousKeyView">previousKeyView</a>, <a href="../symbols/SC.View.html#shouldInheritCursor">shouldInheritCursor</a>, <a href="../symbols/SC.View.html#tagName">tagName</a>, <a href="../symbols/SC.View.html#toolTip">toolTip</a>, <a href="../symbols/SC.View.html#touchBoundary">touchBoundary</a>, <a href="../symbols/SC.View.html#useStaticLayout">useStaticLayout</a>, <a href="../symbols/SC.View.html#wantsAcceleratedLayer">wantsAcceleratedLayer</a></dd>
+				</div>
+				
+			<!-- ============================== methods summary ======================== -->
+				
+				<h2>Methods Summary</h2>
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class SC.FieldView.">
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#$input|$input]]</b>()
+								</div>
+								<div class="description">Override to return an CoreQuery object that selects the input elements
+    for the view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#acceptsFirstResponder|acceptsFirstResponder]]</b>()
+								</div>
+								<div class="description">tied to the isEnabled state</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#fieldValue|fieldValue]]</b>()
+								</div>
+								<div class="description">The raw value of the field itself.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#fieldValueDidChange|fieldValueDidChange]]</b>(partialChange)
+								</div>
+								<div class="description">Your class should call this method anytime you think the value of the 
+    input element may have changed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#getFieldValue|getFieldValue]]</b>()
+								</div>
+								<div class="description">Override to retrieve the actual value of the field.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#mouseDown|mouseDown]]</b>(evt)
+								</div>
+								<div class="description">Allow the browser to do its normal event handling for the mouse down
+    event.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#setFieldValue|setFieldValue]]</b>(newValue)
+								</div>
+								<div class="description">Override to set the actual value of the field.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#willBecomeKeyResponderFrom|willBecomeKeyResponderFrom]]</b>(keyView)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#willDestroyLayer|willDestroyLayer]]</b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#willLoseKeyResponderTo|willLoseKeyResponderTo]]</b>(responder)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+				</table>
+				
+				<div class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/SC.View.html">SC.View</a>: </dt><dd><a href="../symbols/SC.View.html#$">$</a>, <a href="../symbols/SC.View.html#adjust">adjust</a>, <a href="../symbols/SC.View.html#appendChild">appendChild</a>, <a href="../symbols/SC.View.html#awake">awake</a>, <a href="../symbols/SC.View.html#beginLiveResize">beginLiveResize</a>, <a href="../symbols/SC.View.html#childViewsObserver">childViewsObserver</a>, <a href="../symbols/SC.View.html#clippingFrame">clippingFrame</a>, <a href="../symbols/SC.View.html#computeFrameWithParentFrame">computeFrameWithParentFrame</a>, <a href="../symbols/SC.View.html#computeParentDimensions">computeParentDimensions</a>, <a href="../symbols/SC.View.html#containerLayer">containerLayer</a>, <a href="../symbols/SC.View.html#contentClippingFrame">contentClippingFrame</a>, <a href="../symbols/SC.View.html#contextMenu">contextMenu</a>, <a href="../symbols/SC.View.html#convertFrameFromView">convertFrameFromView</a>, <a href="../symbols/SC.View.html#convertFrameToView">convertFrameToView</a>, <a href="../symbols/SC.View.html#createChildView">createChildView</a>, <a href="../symbols/SC.View.html#createChildViews">createChildViews</a>, <a href="../symbols/SC.View.html#createLayer">createLayer</a>, <a href="../symbols/SC.View.html#destroy">destroy</a>, <a href="../symbols/SC.View.html#destroyLayer">destroyLayer</a>, <a href="../symbols/SC.View.html#didBecomeKeyResponderFrom">didBecomeKeyResponderFrom</a>, <a href="../symbols/SC.View.html#didLoseKeyResponderTo">didLoseKeyResponderTo</a>, <a href="../symbols/SC.View.html#displayDidChange">displayDidChange</a>, <a href="../symbols/SC.View.html#endLiveResize">endLiveResize</a>, <a href="../symbols/SC.View.html#findLayerInParentLayer">findLayerInParentLayer</a>, <a href="../symbols/SC.View.html#frame">frame</a>, <a href="../symbols/SC.View.html#hasAcceleratedLayer">hasAcceleratedLayer</a>, <a href="../symbols/SC.View.html#insertBefore">insertBefore</a>, <a href="../symbols/SC.View.html#insertText">insertText</a>, <a href="../symbols/SC.View.html#interpretKeyEvents">interpretKeyEvents</a>, <a href="../symbols/SC.View.html#isContextMenuEnabled">isContextMenuEnabled</a>, <a href="../symbols/SC.View.html#isDescendantOf">isDescendantOf</a>, <a href="../symbols/SC.View.html#isEnabledInPane">isEnabledInPane</a>, <a href="../symbols/SC.View.html#layer">layer</a>, <a href="../symbols/SC.View.html#layerId">layerId</a>, <a href="../symbols/SC.View.html#layerIdDidChange">layerIdDidChange</a>, <a href="../symbols/SC.View.html#layoutChildViews">layoutChildViews</a>, <a href="../symbols/SC.View.html#layoutChildViewsIfNeeded">layoutChildViewsIfNeeded</a>, <a href="../symbols/SC.View.html#layoutDidChange">layoutDidChange</a>, <a href="../symbols/SC.View.html#layoutDidChangeFor">layoutDidChangeFor</a>, <a href="../symbols/SC.View.html#layoutStyle">layoutStyle</a>, <a href="../symbols/SC.View.html#layoutView">layoutView</a>, <a href="../symbols/SC.View.html#nextResponder">nextResponder</a>, <a href="../symbols/SC.View.html#nextValidKeyView">nextValidKeyView</a>, <a href="../symbols/SC.View.html#pane">pane</a>, <a href="../symbols/SC.View.html#parentViewDidChange">parentViewDidChange</a>, <a href="../symbols/SC.View.html#parentViewDidResize">parentViewDidResize</a>, <a href="../symbols/SC.View.html#performKeyEquivalent">performKeyEquivalent</a>, <a href="../symbols/SC.View.html#prepareContext">prepareContext</a>, <a href="../symbols/SC.View.html#previousValidKeyView">previousValidKeyView</a>, <a href="../symbols/SC.View.html#propertyDidChange">propertyDidChange</a>, <a href="../symbols/SC.View.html#recomputeIsVisibleInWindow">recomputeIsVisibleInWindow</a>, <a href="../symbols/SC.View.html#removeAllChildren">removeAllChildren</a>, <a href="../symbols/SC.View.html#removeChild">removeChild</a>, <a href="../symbols/SC.View.html#removeFromParent">removeFromParent</a>, <a href="../symbols/SC.View.html#render">render</a>, <a href="../symbols/SC.View.html#renderChildViews">renderChildViews</a>, <a href="../symbols/SC.View.html#renderContext">renderContext</a>, <a href="../symbols/SC.View.html#renderLayout">renderLayout</a>, <a href="../symbols/SC.View.html#replaceAllChildren">replaceAllChildren</a>, <a href="../symbols/SC.View.html#replaceChild">replaceChild</a>, <a href="../symbols/SC.View.html#replaceLayer">replaceLayer</a>, <a href="../symbols/SC.View.html#scrollToVisible">scrollToVisible</a>, <a href="../symbols/SC.View.html#selectStart">selectStart</a>, <a href="../symbols/SC.View.html#splitView">splitView</a>, <a href="../symbols/SC.View.html#touchIsInBoundary">touchIsInBoundary</a>, <a href="../symbols/SC.View.html#updateLayer">updateLayer</a>, <a href="../symbols/SC.View.html#updateLayerIfNeeded">updateLayerIfNeeded</a>, <a href="../symbols/SC.View.html#updateLayerLocation">updateLayerLocation</a>, <a href="../symbols/SC.View.html#updateLayerLocationIfNeeded">updateLayerLocationIfNeeded</a>, <a href="../symbols/SC.View.html#updateLayout">updateLayout</a>, <a href="../symbols/SC.View.html#viewDidResize">viewDidResize</a></dd>
+				</div>
+				
+			<!-- ============================== events summary ======================== --><!-- ============================== constructor details ==================== -->
+			<div class="details" id="constructor">
+				<h2>Class Detail</h2>
+				<div class="fixedFont">
+						<b>SC.FieldView</b>()</div>
+				<div class="description">
+					
+					
+				</div>
+				
+						<div class="detailList">
+						<span class="heading">Since:</span>
+							<span class="item">SproutCore 1.0</span>
+						</div>
+					
+			</div>
+			<!-- ============================== field details ========================== --><h2>Field Detail</h2>
+				
+
+					<div id="isTextArea"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isTextArea</b>
+					
+					</div>
+					<div class="description">
+						If YES then we use textarea instead of input.       WARNING: Use only with textField** Juan</div>
+				<!-- ============================== method details ========================= --><h2>Method Detail</h2>
+					<hr />
+					<div id="$input"></div>
+					<div class="fixedFont">
+					<b>$input</b>()
+					
+					</div>
+					<div class="description">
+						Override to return an CoreQuery object that selects the input elements     for the view.  If this method is defined, the field view will      automatically edit the attrbutes of the input element to reflect the      current isEnabled state among other things.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="acceptsFirstResponder"></div>
+					<div class="fixedFont">
+					<b>acceptsFirstResponder</b>()
+					
+					</div>
+					<div class="description">
+						tied to the isEnabled state
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="fieldValue"></div>
+					<div class="fixedFont">
+					<b>fieldValue</b>()
+					
+					</div>
+					<div class="description">
+						The raw value of the field itself.  This is computed from the 'value'     property by passing it through any validator you might have set.  This is      the value that will be set on the field itself when the view is updated.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="fieldValueDidChange"></div>
+					<div class="fixedFont"><span class="light">Boolean|SC.Error</span>
+					<b>fieldValueDidChange</b>(partialChange)
+					
+					</div>
+					<div class="description">
+						Your class should call this method anytime you think the value of the      input element may have changed.  This will retrieve the value and update     the value property of the view accordingly.          If this is a partial change (i.e. the user is still editing the field and     you expect the value to change further), then be sure to pass YES for the     partialChange parameter.  This will change the kind of validation done on     the value.  Otherwise, the validator may mark the field as having an error     when the user is still in mid-edit.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>partialChange</b>
+									
+								</span>
+								<span class="detail">(optional) YES if this is a partial change.</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Boolean|SC.Error}</span> result of validation.</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="getFieldValue"></div>
+					<div class="fixedFont"><span class="light">String</span>
+					<b>getFieldValue</b>()
+					
+					</div>
+					<div class="description">
+						Override to retrieve the actual value of the field.          The default implementation will simply retrieve the value attribute from     the first input tag in the receiver view.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{String}</span> value</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="mouseDown"></div>
+					<div class="fixedFont">
+					<b>mouseDown</b>(evt)
+					
+					</div>
+					<div class="description">
+						Allow the browser to do its normal event handling for the mouse down     event.  But first, set isActive to YES.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>evt</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="setFieldValue"></div>
+					<div class="fixedFont"><span class="light">SC.FieldView</span>
+					<b>setFieldValue</b>(newValue)
+					
+					</div>
+					<div class="description">
+						Override to set the actual value of the field.          The default implementation will simple copy the newValue to the value     attribute of any input tags in the receiver view.  You can override this     method to provide specific functionality needed by your view.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Object}</span> <b>newValue</b>
+									
+								</span>
+								<span class="detail">the value to display.</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.FieldView.html">SC.FieldView</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="willBecomeKeyResponderFrom"></div>
+					<div class="fixedFont">
+					<b>willBecomeKeyResponderFrom</b>(keyView)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>keyView</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="willDestroyLayer"></div>
+					<div class="fixedFont">
+					<b>willDestroyLayer</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="willLoseKeyResponderTo"></div>
+					<div class="fixedFont">
+					<b>willLoseKeyResponderTo</b>(responder)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>responder</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+			<!-- ============================== event details ========================= -->
+</div>

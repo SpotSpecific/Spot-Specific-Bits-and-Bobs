@@ -1,0 +1,224 @@
+<div class="jsdoc">
+<!-- ============================== class title ============================ -->
+<!--SYMBOL=Class SC.ContainerView
+				--><!-- ============================== class summary ========================== --><p class="description"><br />Extends
+					<a href="../symbols/SC.View.html">SC.View</a>.<br />A container view will display its "content" view as its only child.  You can
+  use a container view to easily swap out views on your page.  In addition to
+  displaying the actual view in the content property, you can also set the 
+  nowShowing property to the property path of a view in your page and the
+  view will be found and swapped in for you.
+  
+  If you want to change the way the container view swaps in your new view, 
+  override the replaceContent() method.<i>Defined in: </i> &lt;/Users/graeme/git/sproutcore/frameworks/foundation/views/container.js&gt;.</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<h2>Class Summary</h2>
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class SC.ContainerView.">
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b>[[#constructor|SC.ContainerView]]</b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+			</table>
+			<!-- ============================== properties summary ===================== -->
+				
+				
+				<h2>Field Summary</h2>
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class SC.ContainerView.">
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#contentView|contentView]]</b>
+								</div>
+								<div class="description">The content view to display.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#nowShowing|nowShowing]]</b>
+								</div>
+								<div class="description">Optional path name for the content view.</div>
+							</td>
+						</tr>
+					
+				</table>
+				
+				<div class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/SC.View.html">SC.View</a>: </dt><dd><a href="../symbols/SC.View.html#acceptsFirstResponder">acceptsFirstResponder</a>, <a href="../symbols/SC.View.html#backgroundColor">backgroundColor</a>, <a href="../symbols/SC.View.html#childViews">childViews</a>, <a href="../symbols/SC.View.html#childViewsNeedLayout">childViewsNeedLayout</a>, <a href="../symbols/SC.View.html#classNames">classNames</a>, <a href="../symbols/SC.View.html#cursor">cursor</a>, <a href="../symbols/SC.View.html#displayProperties">displayProperties</a>, <a href="../symbols/SC.View.html#isEnabled">isEnabled</a>, <a href="../symbols/SC.View.html#isKeyResponder">isKeyResponder</a>, <a href="../symbols/SC.View.html#isTextSelectable">isTextSelectable</a>, <a href="../symbols/SC.View.html#isView">isView</a>, <a href="../symbols/SC.View.html#isVisible">isVisible</a>, <a href="../symbols/SC.View.html#isVisibleInWindow">isVisibleInWindow</a>, <a href="../symbols/SC.View.html#layerLocationNeedsUpdate">layerLocationNeedsUpdate</a>, <a href="../symbols/SC.View.html#layerNeedsUpdate">layerNeedsUpdate</a>, <a href="../symbols/SC.View.html#layout">layout</a>, <a href="../symbols/SC.View.html#nextKeyView">nextKeyView</a>, <a href="../symbols/SC.View.html#page">page</a>, <a href="../symbols/SC.View.html#parentView">parentView</a>, <a href="../symbols/SC.View.html#previousKeyView">previousKeyView</a>, <a href="../symbols/SC.View.html#shouldInheritCursor">shouldInheritCursor</a>, <a href="../symbols/SC.View.html#tagName">tagName</a>, <a href="../symbols/SC.View.html#toolTip">toolTip</a>, <a href="../symbols/SC.View.html#touchBoundary">touchBoundary</a>, <a href="../symbols/SC.View.html#useStaticLayout">useStaticLayout</a>, <a href="../symbols/SC.View.html#wantsAcceleratedLayer">wantsAcceleratedLayer</a></dd>
+				</div>
+				
+			<!-- ============================== methods summary ======================== -->
+				
+				<h2>Methods Summary</h2>
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class SC.ContainerView.">
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#awake|awake]]</b>()
+								</div>
+								<div class="description">When a container view awakes, it will try to find the nowShowing, if 
+    there is one, and set it as content if necessary.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#contentViewDidChange|contentViewDidChange]]</b>()
+								</div>
+								<div class="description">Invoked whenever the content property changes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#nowShowingDidChange|nowShowingDidChange]]</b>()
+								</div>
+								<div class="description">Invoked whenever the nowShowing property changes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#replaceContent|replaceContent]]</b>(newContent)
+								</div>
+								<div class="description">Replaces any child views with the passed new content.</div>
+							</td>
+						</tr>
+					
+				</table>
+				
+				<div class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/SC.View.html">SC.View</a>: </dt><dd><a href="../symbols/SC.View.html#$">$</a>, <a href="../symbols/SC.View.html#adjust">adjust</a>, <a href="../symbols/SC.View.html#appendChild">appendChild</a>, <a href="../symbols/SC.View.html#beginLiveResize">beginLiveResize</a>, <a href="../symbols/SC.View.html#childViewsObserver">childViewsObserver</a>, <a href="../symbols/SC.View.html#clippingFrame">clippingFrame</a>, <a href="../symbols/SC.View.html#computeFrameWithParentFrame">computeFrameWithParentFrame</a>, <a href="../symbols/SC.View.html#computeParentDimensions">computeParentDimensions</a>, <a href="../symbols/SC.View.html#containerLayer">containerLayer</a>, <a href="../symbols/SC.View.html#contentClippingFrame">contentClippingFrame</a>, <a href="../symbols/SC.View.html#contextMenu">contextMenu</a>, <a href="../symbols/SC.View.html#convertFrameFromView">convertFrameFromView</a>, <a href="../symbols/SC.View.html#convertFrameToView">convertFrameToView</a>, <a href="../symbols/SC.View.html#createChildView">createChildView</a>, <a href="../symbols/SC.View.html#createChildViews">createChildViews</a>, <a href="../symbols/SC.View.html#createLayer">createLayer</a>, <a href="../symbols/SC.View.html#destroy">destroy</a>, <a href="../symbols/SC.View.html#destroyLayer">destroyLayer</a>, <a href="../symbols/SC.View.html#didBecomeKeyResponderFrom">didBecomeKeyResponderFrom</a>, <a href="../symbols/SC.View.html#didLoseKeyResponderTo">didLoseKeyResponderTo</a>, <a href="../symbols/SC.View.html#displayDidChange">displayDidChange</a>, <a href="../symbols/SC.View.html#endLiveResize">endLiveResize</a>, <a href="../symbols/SC.View.html#findLayerInParentLayer">findLayerInParentLayer</a>, <a href="../symbols/SC.View.html#frame">frame</a>, <a href="../symbols/SC.View.html#hasAcceleratedLayer">hasAcceleratedLayer</a>, <a href="../symbols/SC.View.html#insertBefore">insertBefore</a>, <a href="../symbols/SC.View.html#insertText">insertText</a>, <a href="../symbols/SC.View.html#interpretKeyEvents">interpretKeyEvents</a>, <a href="../symbols/SC.View.html#isContextMenuEnabled">isContextMenuEnabled</a>, <a href="../symbols/SC.View.html#isDescendantOf">isDescendantOf</a>, <a href="../symbols/SC.View.html#isEnabledInPane">isEnabledInPane</a>, <a href="../symbols/SC.View.html#layer">layer</a>, <a href="../symbols/SC.View.html#layerId">layerId</a>, <a href="../symbols/SC.View.html#layerIdDidChange">layerIdDidChange</a>, <a href="../symbols/SC.View.html#layoutChildViews">layoutChildViews</a>, <a href="../symbols/SC.View.html#layoutChildViewsIfNeeded">layoutChildViewsIfNeeded</a>, <a href="../symbols/SC.View.html#layoutDidChange">layoutDidChange</a>, <a href="../symbols/SC.View.html#layoutDidChangeFor">layoutDidChangeFor</a>, <a href="../symbols/SC.View.html#layoutStyle">layoutStyle</a>, <a href="../symbols/SC.View.html#layoutView">layoutView</a>, <a href="../symbols/SC.View.html#nextResponder">nextResponder</a>, <a href="../symbols/SC.View.html#nextValidKeyView">nextValidKeyView</a>, <a href="../symbols/SC.View.html#pane">pane</a>, <a href="../symbols/SC.View.html#parentViewDidChange">parentViewDidChange</a>, <a href="../symbols/SC.View.html#parentViewDidResize">parentViewDidResize</a>, <a href="../symbols/SC.View.html#performKeyEquivalent">performKeyEquivalent</a>, <a href="../symbols/SC.View.html#prepareContext">prepareContext</a>, <a href="../symbols/SC.View.html#previousValidKeyView">previousValidKeyView</a>, <a href="../symbols/SC.View.html#propertyDidChange">propertyDidChange</a>, <a href="../symbols/SC.View.html#recomputeIsVisibleInWindow">recomputeIsVisibleInWindow</a>, <a href="../symbols/SC.View.html#removeAllChildren">removeAllChildren</a>, <a href="../symbols/SC.View.html#removeChild">removeChild</a>, <a href="../symbols/SC.View.html#removeFromParent">removeFromParent</a>, <a href="../symbols/SC.View.html#render">render</a>, <a href="../symbols/SC.View.html#renderChildViews">renderChildViews</a>, <a href="../symbols/SC.View.html#renderContext">renderContext</a>, <a href="../symbols/SC.View.html#renderLayout">renderLayout</a>, <a href="../symbols/SC.View.html#replaceAllChildren">replaceAllChildren</a>, <a href="../symbols/SC.View.html#replaceChild">replaceChild</a>, <a href="../symbols/SC.View.html#replaceLayer">replaceLayer</a>, <a href="../symbols/SC.View.html#scrollToVisible">scrollToVisible</a>, <a href="../symbols/SC.View.html#selectStart">selectStart</a>, <a href="../symbols/SC.View.html#splitView">splitView</a>, <a href="../symbols/SC.View.html#touchIsInBoundary">touchIsInBoundary</a>, <a href="../symbols/SC.View.html#updateLayer">updateLayer</a>, <a href="../symbols/SC.View.html#updateLayerIfNeeded">updateLayerIfNeeded</a>, <a href="../symbols/SC.View.html#updateLayerLocation">updateLayerLocation</a>, <a href="../symbols/SC.View.html#updateLayerLocationIfNeeded">updateLayerLocationIfNeeded</a>, <a href="../symbols/SC.View.html#updateLayout">updateLayout</a>, <a href="../symbols/SC.View.html#viewDidResize">viewDidResize</a>, <a href="../symbols/SC.View.html#willBecomeKeyResponderFrom">willBecomeKeyResponderFrom</a>, <a href="../symbols/SC.View.html#willLoseKeyResponderTo">willLoseKeyResponderTo</a></dd>
+				</div>
+				
+			<!-- ============================== events summary ======================== --><!-- ============================== constructor details ==================== -->
+			<div class="details" id="constructor">
+				<h2>Class Detail</h2>
+				<div class="fixedFont">
+						<b>SC.ContainerView</b>()</div>
+				<div class="description">
+					
+					
+				</div>
+				
+						<div class="detailList">
+						<span class="heading">Since:</span>
+							<span class="item">SproutCore 1.0</span>
+						</div>
+					
+			</div>
+			<!-- ============================== field details ========================== --><h2>Field Detail</h2>
+				
+
+					<div id="contentView"></div>
+					<div class="fixedFont">
+					
+					
+					<b>contentView</b>
+					
+					</div>
+					<div class="description">
+						The content view to display.  This will become the only child view of     the view.  Note that if you set the nowShowing property to any value other     than 'null', the container view will automatically change the contentView     to reflect view indicated by the value.</div>
+				
+
+					<div id="nowShowing"></div>
+					<div class="fixedFont">
+					
+					
+					<b>nowShowing</b>
+					
+					</div>
+					<div class="description">
+						Optional path name for the content view.  Set this to a property path      pointing to the view you want to display.  This will automatically change     the content view for you.  If you pass a single property name (e.g.     "myView") then the container view will look up the property on its own      page object.  If you pass a full property name      (e.g. "MyApp.anotherPage.anotherView"), then the path will be followed      from the top-level.</div>
+				<!-- ============================== method details ========================= --><h2>Method Detail</h2>
+					<hr />
+					<div id="awake"></div>
+					<div class="fixedFont">
+					<b>awake</b>()
+					
+					</div>
+					<div class="description">
+						When a container view awakes, it will try to find the nowShowing, if      there is one, and set it as content if necessary.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="contentViewDidChange"></div>
+					<div class="fixedFont">
+					<b>contentViewDidChange</b>()
+					
+					</div>
+					<div class="description">
+						Invoked whenever the content property changes.  This method will simply     call replaceContent.  Override replaceContent to change how the view is     swapped out.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="nowShowingDidChange"></div>
+					<div class="fixedFont">
+					<b>nowShowingDidChange</b>()
+					
+					</div>
+					<div class="description">
+						Invoked whenever the nowShowing property changes.  This will try to find     the new content if possible and set it.  If you set nowShowing to an      empty string or null, then the current content will be cleared.          If you set the content manually, the nowShowing property will be set to     SC.CONTENT_SET_DIRECTLY
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="replaceContent"></div>
+					<div class="fixedFont">
+					<b>replaceContent</b>(newContent)
+					
+					</div>
+					<div class="description">
+						Replaces any child views with the passed new content.            This method is automatically called whenever your contentView property      changes.  You can override it if you want to provide some behavior other     than the default.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> <b>newContent</b>
+									
+								</span>
+								<span class="detail">the new content view or null.</span>
+							
+							</div>
+						
+				
+			<!-- ============================== event details ========================= -->
+</div>

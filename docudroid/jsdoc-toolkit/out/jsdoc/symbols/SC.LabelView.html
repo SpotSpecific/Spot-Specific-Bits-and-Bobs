@@ -1,0 +1,557 @@
+<div class="jsdoc">
+<!-- ============================== class title ============================ -->
+<!--SYMBOL=Class SC.LabelView
+				--><!-- ============================== class summary ========================== --><p class="description"><br />Extends
+					SC.Control, SC.InlineEditorDelegate, <a href="../symbols/SC.View.html">SC.View</a>.<br />Displays a static string of text.
+  
+  You use a label view anytime you need to display a static string of text 
+  or to display text that may need to be edited using only an inline control.<i>Defined in: </i> &lt;/Users/graeme/git/sproutcore/frameworks/foundation/views/label.js&gt;.</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<h2>Class Summary</h2>
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class SC.LabelView.">
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b>[[#constructor|SC.LabelView]]</b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+			</table>
+			<!-- ============================== properties summary ===================== -->
+				
+				
+				<h2>Field Summary</h2>
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class SC.LabelView.">
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#displayValue|displayValue]]</b>
+								</div>
+								<div class="description">[RO] The value that will actually be displayed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#escapeHTML|escapeHTML]]</b>
+								</div>
+								<div class="description">If true, value will be escaped to avoid scripting attacks.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#exampleInlineTextFieldView|exampleInlineTextFieldView]]</b>
+								</div>
+								<div class="description">The exampleInlineTextFieldView property is by default a 
+    SC.InlineTextFieldView but it can be set to a customized inline text field
+    view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#fontWeight|fontWeight]]</b>
+								</div>
+								<div class="description">Specify the font weight for this.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#formatter|formatter]]</b>
+								</div>
+								<div class="description">Set this to a validator or to a function and the value
+    will be passed through it before being set.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#hint|hint]]</b>
+								</div>
+								<div class="description">The hint to display if no value is set.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#icon|icon]]</b>
+								</div>
+								<div class="description">An optional icon to display to the left of the label.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isEditable|isEditable]]</b>
+								</div>
+								<div class="description">Enables editing using the inline editor.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isEditing|isEditing]]</b>
+								</div>
+								<div class="description">YES if currently editing label view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isInlineEditorMultiline|isInlineEditorMultiline]]</b>
+								</div>
+								<div class="description">If you want the inline editor to be multiline set this property to YES.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#localize|localize]]</b>
+								</div>
+								<div class="description">If true, then the value will be localized.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#textAlign|textAlign]]</b>
+								</div>
+								<div class="description">Set the alignment of the label view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#validator|validator]]</b>
+								</div>
+								<div class="description">Validator to use during inline editing.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#value|value]]</b>
+								</div>
+								<div class="description">The value of the label.</div>
+							</td>
+						</tr>
+					
+				</table>
+				
+				<div class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/SC.View.html">SC.View</a>: </dt><dd><a href="../symbols/SC.View.html#acceptsFirstResponder">acceptsFirstResponder</a>, <a href="../symbols/SC.View.html#backgroundColor">backgroundColor</a>, <a href="../symbols/SC.View.html#childViews">childViews</a>, <a href="../symbols/SC.View.html#childViewsNeedLayout">childViewsNeedLayout</a>, <a href="../symbols/SC.View.html#classNames">classNames</a>, <a href="../symbols/SC.View.html#cursor">cursor</a>, <a href="../symbols/SC.View.html#displayProperties">displayProperties</a>, <a href="../symbols/SC.View.html#isEnabled">isEnabled</a>, <a href="../symbols/SC.View.html#isKeyResponder">isKeyResponder</a>, <a href="../symbols/SC.View.html#isTextSelectable">isTextSelectable</a>, <a href="../symbols/SC.View.html#isView">isView</a>, <a href="../symbols/SC.View.html#isVisible">isVisible</a>, <a href="../symbols/SC.View.html#isVisibleInWindow">isVisibleInWindow</a>, <a href="../symbols/SC.View.html#layerLocationNeedsUpdate">layerLocationNeedsUpdate</a>, <a href="../symbols/SC.View.html#layerNeedsUpdate">layerNeedsUpdate</a>, <a href="../symbols/SC.View.html#layout">layout</a>, <a href="../symbols/SC.View.html#nextKeyView">nextKeyView</a>, <a href="../symbols/SC.View.html#page">page</a>, <a href="../symbols/SC.View.html#parentView">parentView</a>, <a href="../symbols/SC.View.html#previousKeyView">previousKeyView</a>, <a href="../symbols/SC.View.html#shouldInheritCursor">shouldInheritCursor</a>, <a href="../symbols/SC.View.html#tagName">tagName</a>, <a href="../symbols/SC.View.html#toolTip">toolTip</a>, <a href="../symbols/SC.View.html#touchBoundary">touchBoundary</a>, <a href="../symbols/SC.View.html#useStaticLayout">useStaticLayout</a>, <a href="../symbols/SC.View.html#wantsAcceleratedLayer">wantsAcceleratedLayer</a></dd>
+				</div>
+				
+			<!-- ============================== methods summary ======================== -->
+				
+				<h2>Methods Summary</h2>
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class SC.LabelView.">
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#beginEditing|beginEditing]]</b>()
+								</div>
+								<div class="description">Opens the inline text editor (closing it if it was already open for 
+    another view).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#commitEditing|commitEditing]]</b>()
+								</div>
+								<div class="description">Commits current inline editor and then exits editor.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#discardEditing|discardEditing]]</b>()
+								</div>
+								<div class="description">Cancels the current inline editor and then exits editor.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#doubleClick|doubleClick]]</b>(evt)
+								</div>
+								<div class="description">Event dispatcher callback.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#hintValue|hintValue]]</b>()
+								</div>
+								<div class="description">[RO] The hint value that will actually be displayed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#render|render]]</b>(context, firstTime)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+				</table>
+				
+				<div class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/SC.View.html">SC.View</a>: </dt><dd><a href="../symbols/SC.View.html#$">$</a>, <a href="../symbols/SC.View.html#adjust">adjust</a>, <a href="../symbols/SC.View.html#appendChild">appendChild</a>, <a href="../symbols/SC.View.html#awake">awake</a>, <a href="../symbols/SC.View.html#beginLiveResize">beginLiveResize</a>, <a href="../symbols/SC.View.html#childViewsObserver">childViewsObserver</a>, <a href="../symbols/SC.View.html#clippingFrame">clippingFrame</a>, <a href="../symbols/SC.View.html#computeFrameWithParentFrame">computeFrameWithParentFrame</a>, <a href="../symbols/SC.View.html#computeParentDimensions">computeParentDimensions</a>, <a href="../symbols/SC.View.html#containerLayer">containerLayer</a>, <a href="../symbols/SC.View.html#contentClippingFrame">contentClippingFrame</a>, <a href="../symbols/SC.View.html#contextMenu">contextMenu</a>, <a href="../symbols/SC.View.html#convertFrameFromView">convertFrameFromView</a>, <a href="../symbols/SC.View.html#convertFrameToView">convertFrameToView</a>, <a href="../symbols/SC.View.html#createChildView">createChildView</a>, <a href="../symbols/SC.View.html#createChildViews">createChildViews</a>, <a href="../symbols/SC.View.html#createLayer">createLayer</a>, <a href="../symbols/SC.View.html#destroy">destroy</a>, <a href="../symbols/SC.View.html#destroyLayer">destroyLayer</a>, <a href="../symbols/SC.View.html#didBecomeKeyResponderFrom">didBecomeKeyResponderFrom</a>, <a href="../symbols/SC.View.html#didLoseKeyResponderTo">didLoseKeyResponderTo</a>, <a href="../symbols/SC.View.html#displayDidChange">displayDidChange</a>, <a href="../symbols/SC.View.html#endLiveResize">endLiveResize</a>, <a href="../symbols/SC.View.html#findLayerInParentLayer">findLayerInParentLayer</a>, <a href="../symbols/SC.View.html#frame">frame</a>, <a href="../symbols/SC.View.html#hasAcceleratedLayer">hasAcceleratedLayer</a>, <a href="../symbols/SC.View.html#insertBefore">insertBefore</a>, <a href="../symbols/SC.View.html#insertText">insertText</a>, <a href="../symbols/SC.View.html#interpretKeyEvents">interpretKeyEvents</a>, <a href="../symbols/SC.View.html#isContextMenuEnabled">isContextMenuEnabled</a>, <a href="../symbols/SC.View.html#isDescendantOf">isDescendantOf</a>, <a href="../symbols/SC.View.html#isEnabledInPane">isEnabledInPane</a>, <a href="../symbols/SC.View.html#layer">layer</a>, <a href="../symbols/SC.View.html#layerId">layerId</a>, <a href="../symbols/SC.View.html#layerIdDidChange">layerIdDidChange</a>, <a href="../symbols/SC.View.html#layoutChildViews">layoutChildViews</a>, <a href="../symbols/SC.View.html#layoutChildViewsIfNeeded">layoutChildViewsIfNeeded</a>, <a href="../symbols/SC.View.html#layoutDidChange">layoutDidChange</a>, <a href="../symbols/SC.View.html#layoutDidChangeFor">layoutDidChangeFor</a>, <a href="../symbols/SC.View.html#layoutStyle">layoutStyle</a>, <a href="../symbols/SC.View.html#layoutView">layoutView</a>, <a href="../symbols/SC.View.html#nextResponder">nextResponder</a>, <a href="../symbols/SC.View.html#nextValidKeyView">nextValidKeyView</a>, <a href="../symbols/SC.View.html#pane">pane</a>, <a href="../symbols/SC.View.html#parentViewDidChange">parentViewDidChange</a>, <a href="../symbols/SC.View.html#parentViewDidResize">parentViewDidResize</a>, <a href="../symbols/SC.View.html#performKeyEquivalent">performKeyEquivalent</a>, <a href="../symbols/SC.View.html#prepareContext">prepareContext</a>, <a href="../symbols/SC.View.html#previousValidKeyView">previousValidKeyView</a>, <a href="../symbols/SC.View.html#propertyDidChange">propertyDidChange</a>, <a href="../symbols/SC.View.html#recomputeIsVisibleInWindow">recomputeIsVisibleInWindow</a>, <a href="../symbols/SC.View.html#removeAllChildren">removeAllChildren</a>, <a href="../symbols/SC.View.html#removeChild">removeChild</a>, <a href="../symbols/SC.View.html#removeFromParent">removeFromParent</a>, <a href="../symbols/SC.View.html#renderChildViews">renderChildViews</a>, <a href="../symbols/SC.View.html#renderContext">renderContext</a>, <a href="../symbols/SC.View.html#renderLayout">renderLayout</a>, <a href="../symbols/SC.View.html#replaceAllChildren">replaceAllChildren</a>, <a href="../symbols/SC.View.html#replaceChild">replaceChild</a>, <a href="../symbols/SC.View.html#replaceLayer">replaceLayer</a>, <a href="../symbols/SC.View.html#scrollToVisible">scrollToVisible</a>, <a href="../symbols/SC.View.html#selectStart">selectStart</a>, <a href="../symbols/SC.View.html#splitView">splitView</a>, <a href="../symbols/SC.View.html#touchIsInBoundary">touchIsInBoundary</a>, <a href="../symbols/SC.View.html#updateLayer">updateLayer</a>, <a href="../symbols/SC.View.html#updateLayerIfNeeded">updateLayerIfNeeded</a>, <a href="../symbols/SC.View.html#updateLayerLocation">updateLayerLocation</a>, <a href="../symbols/SC.View.html#updateLayerLocationIfNeeded">updateLayerLocationIfNeeded</a>, <a href="../symbols/SC.View.html#updateLayout">updateLayout</a>, <a href="../symbols/SC.View.html#viewDidResize">viewDidResize</a>, <a href="../symbols/SC.View.html#willBecomeKeyResponderFrom">willBecomeKeyResponderFrom</a>, <a href="../symbols/SC.View.html#willLoseKeyResponderTo">willLoseKeyResponderTo</a></dd>
+				</div>
+				
+			<!-- ============================== events summary ======================== --><!-- ============================== constructor details ==================== -->
+			<div class="details" id="constructor">
+				<h2>Class Detail</h2>
+				<div class="fixedFont">
+						<b>SC.LabelView</b>()</div>
+				<div class="description">
+					
+					
+				</div>
+				
+						<div class="detailList">
+						<span class="heading">Since:</span>
+							<span class="item">SproutCore 1.0</span>
+						</div>
+					
+			</div>
+			<!-- ============================== field details ========================== --><h2>Field Detail</h2>
+				
+
+					<div id="displayValue"></div>
+					<div class="fixedFont">
+					
+					
+					<b>displayValue</b>
+					
+					</div>
+					<div class="description">
+						[RO] The value that will actually be displayed.          This property is dynamically computed by applying localization,      string conversion and other normalization utilities.</div>
+				
+
+					<div id="escapeHTML"></div>
+					<div class="fixedFont">
+					
+					
+					<b>escapeHTML</b>
+					
+					</div>
+					<div class="description">
+						If true, value will be escaped to avoid scripting attacks.          This is a default value that can be overridden by the     settings on the owner view.</div>
+				
+
+					<div id="exampleInlineTextFieldView"></div>
+					<div class="fixedFont">
+					
+					
+					<b>exampleInlineTextFieldView</b>
+					
+					</div>
+					<div class="description">
+						The exampleInlineTextFieldView property is by default a      SC.InlineTextFieldView but it can be set to a customized inline text field     view.</div>
+				
+
+					<div id="fontWeight"></div>
+					<div class="fixedFont">
+					
+					
+					<b>fontWeight</b>
+					
+					</div>
+					<div class="description">
+						Specify the font weight for this.  You may pass SC.REGULAR_WEIGHT, or SC.BOLD_WEIGHT.</div>
+				
+
+					<div id="formatter"></div>
+					<div class="fixedFont">
+					
+					
+					<b>formatter</b>
+					
+					</div>
+					<div class="description">
+						Set this to a validator or to a function and the value     will be passed through it before being set.          This is a default default that can be overidden by the     settings in the owner view.</div>
+				
+
+					<div id="hint"></div>
+					<div class="fixedFont">
+					
+					
+					<b>hint</b>
+					
+					</div>
+					<div class="description">
+						The hint to display if no value is set.  Should be used only if isEditable     is set to YES.</div>
+				
+
+					<div id="icon"></div>
+					<div class="fixedFont">
+					
+					
+					<b>icon</b>
+					
+					</div>
+					<div class="description">
+						An optional icon to display to the left of the label.  Set this value     to either a CSS class name (for spriting) or an image URL.</div>
+				
+
+					<div id="isEditable"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isEditable</b>
+					
+					</div>
+					<div class="description">
+						Enables editing using the inline editor.</div>
+				
+
+					<div id="isEditing"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isEditing</b>
+					
+					</div>
+					<div class="description">
+						YES if currently editing label view.</div>
+				
+
+					<div id="isInlineEditorMultiline"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isInlineEditorMultiline</b>
+					
+					</div>
+					<div class="description">
+						If you want the inline editor to be multiline set this property to YES.</div>
+				
+
+					<div id="localize"></div>
+					<div class="fixedFont">
+					
+					
+					<b>localize</b>
+					
+					</div>
+					<div class="description">
+						If true, then the value will be localized.          This is a default default that can be overidden by the     settings in the owner view.</div>
+				
+
+					<div id="textAlign"></div>
+					<div class="fixedFont">
+					
+					
+					<b>textAlign</b>
+					
+					</div>
+					<div class="description">
+						Set the alignment of the label view.</div>
+				
+
+					<div id="validator"></div>
+					<div class="fixedFont">
+					
+					
+					<b>validator</b>
+					
+					</div>
+					<div class="description">
+						Validator to use during inline editing.          If you have set isEditing to YES, then any validator you set on this     property will be used when the label view is put into edit mode.</div>
+				
+
+					<div id="value"></div>
+					<div class="fixedFont">
+					
+					
+					<b>value</b>
+					
+					</div>
+					<div class="description">
+						The value of the label.          You may also set the value using a content object and a contentValueKey.</div>
+				<!-- ============================== method details ========================= --><h2>Method Detail</h2>
+					<hr />
+					<div id="beginEditing"></div>
+					<div class="fixedFont"><span class="light">Boolean</span>
+					<b>beginEditing</b>()
+					
+					</div>
+					<div class="description">
+						Opens the inline text editor (closing it if it was already open for      another view).
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Boolean}</span> YES if did begin editing</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="commitEditing"></div>
+					<div class="fixedFont"><span class="light">Boolean</span>
+					<b>commitEditing</b>()
+					
+					</div>
+					<div class="description">
+						Commits current inline editor and then exits editor.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Boolean}</span> NO if the editor could not exit</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="discardEditing"></div>
+					<div class="fixedFont"><span class="light">Boolean</span>
+					<b>discardEditing</b>()
+					
+					</div>
+					<div class="description">
+						Cancels the current inline editor and then exits editor.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Boolean}</span> NO if the editor could not exit.</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="doubleClick"></div>
+					<div class="fixedFont">
+					<b>doubleClick</b>(evt)
+					
+					</div>
+					<div class="description">
+						Event dispatcher callback.     If isEditable is set to true, opens the inline text editor view.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{DOMMouseEvent}</span> <b>evt</b>
+									
+								</span>
+								<span class="detail">DOM event</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="hintValue"></div>
+					<div class="fixedFont">
+					<b>hintValue</b>()
+					
+					</div>
+					<div class="description">
+						[RO] The hint value that will actually be displayed.          This property is dynamically computed by applying localization      and other normalization utilities.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="render"></div>
+					<div class="fixedFont">
+					<b>render</b>(context, firstTime)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>context</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>firstTime</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+			<!-- ============================== event details ========================= -->
+</div>

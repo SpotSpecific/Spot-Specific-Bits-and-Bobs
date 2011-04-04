@@ -1,0 +1,3657 @@
+<div class="jsdoc">
+<!-- ============================== class title ============================ -->
+<!--SYMBOL=Class SC.View
+				--><!-- ============================== class summary ========================== --><p class="description"><br />Extends
+					SC.DelegateSupport, SC.Responder.<br />Base class for managing a view.  Views provide two functions:
+  
+  1. They translate state and events into drawing instructions for the 
+     web browser and
+  
+  2. They act as first responders for incoming keyboard, mouse, and 
+     touch events.
+  
+  h2. View Initialization
+  
+  When a view is setup, there are several methods you can override that 
+  will be called at different times depending on how your view is created.
+  Here is a guide to which method you want to override and when:
+  
+  - *init:* override this method for any general object setup (such as 
+    observers, starting timers and animations, etc) that you need to happen 
+    everytime the view is created, regardless of whether or not its layer 
+    exists yet.
+    
+  - *render:* override this method to generate or update your HTML to reflect
+    the current state of your view.  This method is called both when your view
+    is first created and later anytime it needs to be updated.
+
+  - *didCreateLayer:* the render() method is used to generate new HTML.  
+    Override this method to perform any additional setup on the DOM you might
+    need to do after creating the view.  For example, if you need to listen
+    for events.
+    
+  - *willDestroyLayer:* if you implement didCreateLayer() to setup event 
+    listeners, you should implement this method as well to remove the same 
+    just before the DOM for your view is destroyed.
+    
+  - *updateLayer:* Normally, when a view needs to update its content, it will
+    re-render the view using the render() method.  If you would like to 
+    override this behavior with your own custom updating code, you can 
+    replace updateLayer() with your own implementation instead.
+    
+  - *didAppendToDocument:* in theory all DOM setup could be done
+    in didCreateLayer() as you already have a DOM element instantiated. 
+    However there is cases where the element has to be first appended to the
+    Document because there is either a bug on the browser or you are using 
+    plugins which objects are not instantiated until you actually append the
+    element to the DOM. This will allow you to do things like registering 
+    DOM events on flash or quicktime objects.<i>Defined in: </i> &lt;/Users/graeme/git/sproutcore/frameworks/foundation/views/view.js&gt;.</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<h2>Class Summary</h2>
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class SC.View.">
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b>[[#constructor|SC.View]]</b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+			</table>
+			<!-- ============================== properties summary ===================== -->
+				
+				
+				<h2>Field Summary</h2>
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class SC.View.">
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#acceptsFirstResponder|acceptsFirstResponder]]</b>
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#backgroundColor|backgroundColor]]</b>
+								</div>
+								<div class="description">Optional background color.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#childViews|childViews]]</b>
+								</div>
+								<div class="description">Array of child views.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#childViewsNeedLayout|childViewsNeedLayout]]</b>
+								</div>
+								<div class="description">This this property to YES whenever the view needs to layout its child
+    views.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#classNames|classNames]]</b>
+								</div>
+								<div class="description">Standard CSS class names to apply to the view's outer element.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#cursor|cursor]]</b>
+								</div>
+								<div class="description">You can set this to an SC.Cursor instance; its class name will 
+    automatically be added to the layer's classNames, allowing you
+    to efficiently change the cursor for a large group of views with
+    just one change to the SC.Cursor object.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#displayProperties|displayProperties]]</b>
+								</div>
+								<div class="description">You can set this array to include any properties that should immediately
+    invalidate the display.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isEnabled|isEnabled]]</b>
+								</div>
+								<div class="description">Set to true when the item is enabled.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isKeyResponder|isKeyResponder]]</b>
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isTextSelectable|isTextSelectable]]</b>
+								</div>
+								<div class="description">Determines if the user can select text within the view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isView|isView]]</b>
+								</div>
+								<div class="description">walk like a duck</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isVisible|isVisible]]</b>
+								</div>
+								<div class="description">The isVisible property determines if the view is shown in the view 
+    hierarchy it is a part of.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#isVisibleInWindow|isVisibleInWindow]]</b>
+								</div>
+								<div class="description">YES only if the view and all of its parent views are currently visible
+    in the window.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#layerLocationNeedsUpdate|layerLocationNeedsUpdate]]</b>
+								</div>
+								<div class="description">Set to YES when the view's layer location is dirty.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#layerNeedsUpdate|layerNeedsUpdate]]</b>
+								</div>
+								<div class="description">Setting this property to YES will cause the updateLayerIfNeeded method to 
+    be invoked at the end of the runloop.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#layout|layout]]</b>
+								</div>
+								<div class="description">The layout describes how you want your view to be positions on the 
+    screen.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#nextKeyView|nextKeyView]]</b>
+								</div>
+								<div class="description">Optionally points to the next key view that should gain focus when tabbing
+    through an interface.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#page|page]]</b>
+								</div>
+								<div class="description">The page this view was instantiated from.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#parentView|parentView]]</b>
+								</div>
+								<div class="description">If the view is currently inserted into the DOM of a parent view, this
+    property will point to the parent of the view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#previousKeyView|previousKeyView]]</b>
+								</div>
+								<div class="description">Optionally points to the previous key view that should gain focus when
+    tabbing through the interface.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#shouldInheritCursor|shouldInheritCursor]]</b>
+								</div>
+								<div class="description">A child view without a cursor of its own inherits its parent's cursor by
+    default.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#tagName|tagName]]</b>
+								</div>
+								<div class="description">Tag name for the view's outer element.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#toolTip|toolTip]]</b>
+								</div>
+								<div class="description">Tool tip property that will be set to the title attribute on the HTML 
+    rendered element.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#touchBoundary|touchBoundary]]</b>
+								</div>
+								<div class="description">A boundary set of distances outside which the touch will not be considered "inside" the view anymore.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#useStaticLayout|useStaticLayout]]</b>
+								</div>
+								<div class="description">Activates use of brower's static layout.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b>[[#wantsAcceleratedLayer|wantsAcceleratedLayer]]</b>
+								</div>
+								<div class="description">Setting wantsAcceleratedLayer to YES will use 3d transforms to move the
+    layer when available.</div>
+							</td>
+						</tr>
+					
+				</table>
+				
+			<!-- ============================== methods summary ======================== -->
+				
+				<h2>Methods Summary</h2>
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class SC.View.">
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#$|$]]</b>(sel)
+								</div>
+								<div class="description">Get a CoreQuery object for this view's layer, or pass in a selector string
+    to get a CoreQuery object for a DOM node nested within this layer.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#adjust|adjust]]</b>(key, value)
+								</div>
+								<div class="description">This convenience method will take the current layout, apply any changes
+    you pass and set it again.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#appendChild|appendChild]]</b>(view)
+								</div>
+								<div class="description">Appends the specified view to the end of the receivers childViews array.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#applyLocalizedAttributes|applyLocalizedAttributes]]</b>(loc)
+								</div>
+								<div class="description">Internal method actually updates the localizated attributes on the view
+    class.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#awake|awake]]</b>()
+								</div>
+								<div class="description">Wakes up the view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#beginLiveResize|beginLiveResize]]</b>()
+								</div>
+								<div class="description">Call this method when you plan to begin a live resize.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#bind|bind]]</b>(keyName, path)
+								</div>
+								<div class="description">Helper adds a binding to a design</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#childView|childView]]</b>(cv)
+								</div>
+								<div class="description">Helper adds the childView</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#childViewsObserver|childViewsObserver]]</b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#classNames|classNames]]</b>(sc)
+								</div>
+								<div class="description">Helper applies the classNames to the prototype</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#clippingFrame|clippingFrame]]</b>()
+								</div>
+								<div class="description">The clipping frame returns the visible portion of the view, taking into
+    account the contentClippingFrame of the parent view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#computeFrameWithParentFrame|computeFrameWithParentFrame]]</b>(pdim)
+								</div>
+								<div class="description">Computes what the frame of this view would be if the parent were resized
+    to the passed dimensions.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#computeParentDimensions|computeParentDimensions]]</b>(frame)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#containerLayer|containerLayer]]</b>()
+								</div>
+								<div class="description">Returns the DOM element that should be used to hold child views when they
+    are added/remove via DOM manipulation.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#contentClippingFrame|contentClippingFrame]]</b>()
+								</div>
+								<div class="description">The clipping frame child views should intersect with.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#contextMenu|contextMenu]]</b>(evt)
+								</div>
+								<div class="description">Used to block the contextMenu per view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#convertFrameFromView|convertFrameFromView]]</b>(frame, targetView)
+								</div>
+								<div class="description">Converts a frame offset in the coordinates of another view system to the 
+    receiver's view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#convertFrameToView|convertFrameToView]]</b>(frame, targetView)
+								</div>
+								<div class="description">Converts a frame from the receiver's offset to the target offset.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#convertLayoutToAnchoredLayout|convertLayoutToAnchoredLayout]]</b>(layout, parentFrame)
+								</div>
+								<div class="description">Convert any layout to a Top, Left, Width, Height layout</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#convertLayoutToCustomLayout|convertLayoutToCustomLayout]]</b>(layout, layoutParams, parentFrame)
+								</div>
+								<div class="description">For now can only convert Top/Left/Width/Height to a Custom Layout</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#create|create]]</b>()
+								</div>
+								<div class="description">Create a new view with the passed attributes hash.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#createChildView|createChildView]]</b>(viewClass, attrs)
+								</div>
+								<div class="description">Instantiates a view to be added to the childViews array during view 
+    initialization.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#createChildViews|createChildViews]]</b>()
+								</div>
+								<div class="description">This method is called when your view is first created to setup any  child 
+    views that are already defined on your class.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#createLayer|createLayer]]</b>()
+								</div>
+								<div class="description">Creates the layer by creating a renderContext and invoking the view's
+    render() method.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#design|design]]</b>(attrs)
+								</div>
+								<div class="description">This method works just like extend() except that it will also preserve
+    the passed attributes in case you want to use a view builder later, if 
+    needed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#destroy|destroy]]</b>()
+								</div>
+								<div class="description">You must call this method on a view to destroy the view (and all of its 
+    child views).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#destroyLayer|destroyLayer]]</b>()
+								</div>
+								<div class="description">Destroys any existing layer along with the layer for any child views as 
+    well.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#didBecomeKeyResponderFrom|didBecomeKeyResponderFrom]]</b>(responder)
+								</div>
+								<div class="description">Invoked just after the responder gains key responder status.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#didLoseKeyResponderTo|didLoseKeyResponderTo]]</b>(responder)
+								</div>
+								<div class="description">Invokved just after the responder loses key responder status.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#displayDidChange|displayDidChange]]</b>()
+								</div>
+								<div class="description">This method is invoked whenever a display property changes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#endLiveResize|endLiveResize]]</b>()
+								</div>
+								<div class="description">Call this method when you are finished with a live resize.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#findLayerInParentLayer|findLayerInParentLayer]]</b>(parentLayer)
+								</div>
+								<div class="description">Attempts to discover the layer in the parent layer.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#frame|frame]]</b>()
+								</div>
+								<div class="description">Frame describes the current bounding rect for your view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#hasAcceleratedLayer|hasAcceleratedLayer]]</b>()
+								</div>
+								<div class="description">Specifies whether 3d transforms can be used to move the layer.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#insertBefore|insertBefore]]</b>(view, beforeView)
+								</div>
+								<div class="description">Insert the view into the the receiver's childNodes array.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#insertText|insertText]]</b>(event)
+								</div>
+								<div class="description">This method is invoked by interpretKeyEvents() when you receive a key 
+    event matching some plain text.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#interpretKeyEvents|interpretKeyEvents]]</b>(event)
+								</div>
+								<div class="description">This method will process a key input event, attempting to convert it to 
+    an appropriate action method and sending it up the responder chain.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#isContextMenuEnabled|isContextMenuEnabled]]</b>()
+								</div>
+								<div class="description">By default we don't disable the context menu.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#isDescendantOf|isDescendantOf]]</b>(view)
+								</div>
+								<div class="description">Returns YES if the receiver is a subview of a given view or if it’s 
+    identical to that view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#isEnabledInPane|isEnabledInPane]]</b>()
+								</div>
+								<div class="description">Computed property returns YES if the view and all of its parent views
+    are enabled in the pane.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layer|layer]]</b>(key, value)
+								</div>
+								<div class="description">Returns the current layer for the view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layerId|layerId]]</b>(key, value)
+								</div>
+								<div class="description">The ID to use when trying to locate the layer in the DOM.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layerIdDidChange|layerIdDidChange]]</b>()
+								</div>
+								<div class="description">Handles changes in the layer id.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#layout|layout]]</b>(layout)
+								</div>
+								<div class="description">Helper applies the layout to the prototype.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layoutChildViews|layoutChildViews]]</b>()
+								</div>
+								<div class="description">Applies the current layout to the layer.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layoutChildViewsIfNeeded|layoutChildViewsIfNeeded]]</b>(isVisible)
+								</div>
+								<div class="description">Called your layout method if the view currently needs to layout some
+    child views.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layoutDidChange|layoutDidChange]]</b>()
+								</div>
+								<div class="description">This method is called whenever a property changes that invalidates the 
+    layout of the view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layoutDidChangeFor|layoutDidChangeFor]]</b>(childView)
+								</div>
+								<div class="description">One of two methods that are invoked whenever one of your childViews 
+    layout changes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layoutStyle|layoutStyle]]</b>()
+								</div>
+								<div class="description">layoutStyle describes the current styles to be written to your element
+    based on the layout you defined.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#layoutView|layoutView]]</b>()
+								</div>
+								<div class="description">The view responsible for laying out this view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#loc|loc]]</b>(loc, rootElement)
+								</div>
+								<div class="description">Applies the passed localization hash to the component views.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#localization|localization]]</b>(attrs, rootElement)
+								</div>
+								<div class="description">Used to construct a localization for a view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#nextResponder|nextResponder]]</b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#nextValidKeyView|nextValidKeyView]]</b>()
+								</div>
+								<div class="description">Computes the next valid key view, possibly returning the receiver or null.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#pane|pane]]</b>()
+								</div>
+								<div class="description">The current pane.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#parentViewDidChange|parentViewDidChange]]</b>()
+								</div>
+								<div class="description">This method is called whenever the receiver's parentView has changed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#parentViewDidResize|parentViewDidResize]]</b>()
+								</div>
+								<div class="description">This method may be called on your view whenever the parent view resizes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#performKeyEquivalent|performKeyEquivalent]]</b>(keystring, evt)
+								</div>
+								<div class="description">Recursively travels down the view hierarchy looking for a view that 
+    implements the key equivalent (returning to YES to indicate it handled 
+    the event).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#prepareContext|prepareContext]]</b>(context, firstTime)
+								</div>
+								<div class="description">Invoked by createLayer() and updateLayer() to actually render a context.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#previousValidKeyView|previousValidKeyView]]</b>()
+								</div>
+								<div class="description">Computes the previous valid key view, possibly returning the receiver or 
+    null.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#prop|prop]]</b>(keyName, value)
+								</div>
+								<div class="description">Helper sets a generic property on a design.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#propertyDidChange|propertyDidChange]]</b>(key, value, _keepCache)
+								</div>
+								<div class="description">The 'frame' property depends on the 'layout' property as well as the
+    parent view’s frame.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#recomputeIsVisibleInWindow|recomputeIsVisibleInWindow]]</b>(parentViewIsVisible)
+								</div>
+								<div class="description">Recomputes the isVisibleInWindow property based on the visibility of the 
+    view and its parent.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#removeAllChildren|removeAllChildren]]</b>()
+								</div>
+								<div class="description">Removes all children from the parentView.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#removeChild|removeChild]]</b>(view)
+								</div>
+								<div class="description">Removes the child view from the parent view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#removeFromParent|removeFromParent]]</b>()
+								</div>
+								<div class="description">Removes the view from its parentView, if one is found.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#render|render]]</b>(context, firstTime)
+								</div>
+								<div class="description">Invoked whenever your view needs to be rendered, including when the view's
+    layer is first created and any time in the future when it needs to be 
+    updated.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#renderChildViews|renderChildViews]]</b>(context, firstName)
+								</div>
+								<div class="description">Your render method should invoke this method to render any child views,
+    especially if this is the first time the view will be rendered.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#renderContext|renderContext]]</b>(tagNameOrElement)
+								</div>
+								<div class="description">Creates a new renderContext with the passed tagName or element.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#renderLayout|renderLayout]]</b>(the, firstTime)
+								</div>
+								<div class="description">Default method called by the layout view to actually apply the current
+    layout to the layer.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#replaceAllChildren|replaceAllChildren]]</b>(views)
+								</div>
+								<div class="description">Replaces the current array of child views with the new array of child 
+    views.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#replaceChild|replaceChild]]</b>(view, view)
+								</div>
+								<div class="description">Replace the oldView with the specified view in the receivers childNodes 
+    array.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#replaceLayer|replaceLayer]]</b>()
+								</div>
+								<div class="description">Destroys and recreates the current layer.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#scrollToVisible|scrollToVisible]]</b>()
+								</div>
+								<div class="description">Attempt to scroll the view to visible.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#selectStart|selectStart]]</b>(evt)
+								</div>
+								<div class="description">Default method called when a selectstart event is triggered.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#splitView|splitView]]</b>()
+								</div>
+								<div class="description">The current split view this view is embedded in (may be null).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#tagName|tagName]]</b>(tg)
+								</div>
+								<div class="description">Help applies the tagName</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#touchIsInBoundary|touchIsInBoundary]]</b>(touch)
+								</div>
+								<div class="description">Returns YES if the provided touch is within the boundary.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#updateLayer|updateLayer]]</b>()
+								</div>
+								<div class="description">This is the core method invoked to update a view layer whenever it has 
+    changed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#updateLayerIfNeeded|updateLayerIfNeeded]]</b>(skipIsVisibleInWindowCheck)
+								</div>
+								<div class="description">Updates the layer only if the view is visible onscreen and if 
+    layerNeedsUpdate is set to YES.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#updateLayerLocation|updateLayerLocation]]</b>()
+								</div>
+								<div class="description">This method is called when a view changes its location in the view 
+    hierarchy.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#updateLayerLocationIfNeeded|updateLayerLocationIfNeeded]]</b>(force)
+								</div>
+								<div class="description">Calls updateLayerLocation(), but only if the view's layer location
+    currently needs to be updated.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#updateLayout|updateLayout]]</b>()
+								</div>
+								<div class="description">Invoked by the layoutChildViews method to update the layout on a 
+    particular view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#viewDidResize|viewDidResize]]</b>()
+								</div>
+								<div class="description">This method is invoked on your view when the view resizes due to a layout
+    change or potentially due to the parent view resizing (if your view’s size
+    depends on the size of your parent view).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">SC.View.<b>[[#viewFor|viewFor]]</b>(element, attrs)
+								</div>
+								<div class="description">Creates a view instance, first finding the DOM element you name and then
+    using that as the root element.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#willBecomeKeyResponderFrom|willBecomeKeyResponderFrom]]</b>(responder)
+								</div>
+								<div class="description">This method is invoked just before you become the key responder.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>[[#willLoseKeyResponderTo|willLoseKeyResponderTo]]</b>(responder)
+								</div>
+								<div class="description">This method is invoked just before you lost the key responder status.</div>
+							</td>
+						</tr>
+					
+				</table>
+				
+			<!-- ============================== events summary ======================== --><!-- ============================== constructor details ==================== -->
+			<div class="details" id="constructor">
+				<h2>Class Detail</h2>
+				<div class="fixedFont">
+						<b>SC.View</b>()</div>
+				<div class="description">
+					
+					
+				</div>
+				
+						<div class="detailList">
+						<span class="heading">Since:</span>
+							<span class="item">SproutCore 1.0</span>
+						</div>
+					
+			</div>
+			<!-- ============================== field details ========================== --><h2>Field Detail</h2>
+				
+
+					<div id="acceptsFirstResponder"></div>
+					<div class="fixedFont">
+					
+					
+					<b>acceptsFirstResponder</b>
+					
+					</div>
+					<div class="description">
+						</div>
+				
+
+					<div id="backgroundColor"></div>
+					<div class="fixedFont">
+					
+					
+					<b>backgroundColor</b>
+					
+					</div>
+					<div class="description">
+						Optional background color.  Will be applied to the view's element if      set.  This property is intended for one-off views that need a background     element.  If you plan to create many view instances it is probably better     to use CSS.</div>
+				
+
+					<div id="childViews"></div>
+					<div class="fixedFont">
+					
+					
+					<b>childViews</b>
+					
+					</div>
+					<div class="description">
+						Array of child views.  You should never edit this array directly unless     you are implementing createChildViews().  Most of the time, you should     use the accessor methods such as appendChild(), insertBefore() and      removeChild().</div>
+				
+
+					<div id="childViewsNeedLayout"></div>
+					<div class="fixedFont">
+					
+					
+					<b>childViewsNeedLayout</b>
+					
+					</div>
+					<div class="description">
+						This this property to YES whenever the view needs to layout its child     views.  Normally this property is set automatically whenever the layout     property for a child view changes.</div>
+				
+
+					<div id="classNames"></div>
+					<div class="fixedFont">
+					
+					
+					<b>classNames</b>
+					
+					</div>
+					<div class="description">
+						Standard CSS class names to apply to the view's outer element.  This      property automatically inherits any class names defined by the view's     superclasses as well.</div>
+				
+
+					<div id="cursor"></div>
+					<div class="fixedFont">
+					
+					
+					<b>cursor</b>
+					
+					</div>
+					<div class="description">
+						You can set this to an SC.Cursor instance; its class name will      automatically be added to the layer's classNames, allowing you     to efficiently change the cursor for a large group of views with     just one change to the SC.Cursor object.  The cursor property     is only used when the layer is created, so if you need to change     it to a different cursor object, you will have to destroy and     recreate the view layer.  (In this case you might investigate     setting cursors using CSS directly instead of SC.Cursor.)</div>
+				
+
+					<div id="displayProperties"></div>
+					<div class="fixedFont">
+					
+					
+					<b>displayProperties</b>
+					
+					</div>
+					<div class="description">
+						You can set this array to include any properties that should immediately     invalidate the display.  The display will be automatically invalidated     when one of these properties change.      Implementation note:  'isVisible' is also effectively a display property,     but it is not declared as such because the same effect is implemented     inside _sc_isVisibleDidChange().  This avoids having two observers on     'isVisible', which is:       a.  More efficient       b.  More correct, because we can guarantee the order of operations</div>
+				
+
+					<div id="isEnabled"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isEnabled</b>
+					
+					</div>
+					<div class="description">
+						Set to true when the item is enabled.   Note that changing this value     will also alter the isVisibleInWindow property for this view and any     child views.          Note that if you apply the SC.Control mixin, changing this property will     also automatically add or remove a 'disabled' CSS class name as well.          This property is observable and bindable.</div>
+				
+
+					<div id="isKeyResponder"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isKeyResponder</b>
+					
+					</div>
+					<div class="description">
+						</div>
+				
+
+					<div id="isTextSelectable"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isTextSelectable</b>
+					
+					</div>
+					<div class="description">
+						Determines if the user can select text within the view.  Normally this is     set to NO to disable text selection.  You should set this to YES if you     are creating a view that includes editable text.  Otherwise, settings this     to YES will probably make your controls harder to use and it is not      recommended.</div>
+				
+
+					<div id="isView"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isView</b>
+					
+					</div>
+					<div class="description">
+						walk like a duck</div>
+				
+
+					<div id="isVisible"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isVisible</b>
+					
+					</div>
+					<div class="description">
+						The isVisible property determines if the view is shown in the view      hierarchy it is a part of. A view can have isVisible == YES and still have     isVisibleInWindow == NO. This occurs, for instance, when a parent view has     isVisible == NO. Default is YES.          The isVisible property is considered part of the layout and so changing it     will trigger a layout update.</div>
+				
+
+					<div id="isVisibleInWindow"></div>
+					<div class="fixedFont">
+					
+					
+					<b>isVisibleInWindow</b>
+					
+					</div>
+					<div class="description">
+						YES only if the view and all of its parent views are currently visible     in the window.  This property is used to optimize certain behaviors in     the view.  For example, updates to the view layer are not performed      if the view until the view becomes visible in the window.</div>
+				
+
+					<div id="layerLocationNeedsUpdate"></div>
+					<div class="fixedFont">
+					
+					
+					<b>layerLocationNeedsUpdate</b>
+					
+					</div>
+					<div class="description">
+						Set to YES when the view's layer location is dirty.  You can call      updateLayerLocationIfNeeded() to clear this flag if it is set.</div>
+				
+
+					<div id="layerNeedsUpdate"></div>
+					<div class="fixedFont">
+					
+					
+					<b>layerNeedsUpdate</b>
+					
+					</div>
+					<div class="description">
+						Setting this property to YES will cause the updateLayerIfNeeded method to      be invoked at the end of the runloop.  You can also force a view to update     sooner by calling updateLayerIfNeeded() directly.  The method will update      the layer only if this property is YES.</div>
+				
+
+					<div id="layout"></div>
+					<div class="fixedFont">
+					
+					
+					<b>layout</b>
+					
+					</div>
+					<div class="description">
+						The layout describes how you want your view to be positions on the      screen.  You can define the following properties:          - left: the left edge     - top: the top edge     - right: the right edge     - bottom: the bottom edge     - height: the height     - width: the width     - centerX: an offset from center X      - centerY: an offset from center Y     - minWidth: a minimum width     - minHeight: a minimum height     - maxWidth: a maximum width     - maxHeight: a maximum height          Note that you can only use certain combinations to set layout.  For      example, you may set left/right or left/width, but not left/width/right,     since that combination doesn't make sense.          Likewise, you may set a minWidth/minHeight, or maxWidth/maxHeight, but     if you also set the width/height explicitly, then those constraints won't     matter as much.          Layout is designed to maximize reliance on the browser's rendering      engine to keep your app up to date.</div>
+				
+
+					<div id="nextKeyView"></div>
+					<div class="fixedFont">
+					
+					
+					<b>nextKeyView</b>
+					
+					</div>
+					<div class="description">
+						Optionally points to the next key view that should gain focus when tabbing     through an interface.  If this is not set, then the next key view will     be set automatically to the next child.</div>
+				
+
+					<div id="page"></div>
+					<div class="fixedFont">
+					
+					
+					<b>page</b>
+					
+					</div>
+					<div class="description">
+						The page this view was instantiated from.  This is set by the page object     during instantiation.</div>
+				
+
+					<div id="parentView"></div>
+					<div class="fixedFont">
+					
+					
+					<b>parentView</b>
+					
+					</div>
+					<div class="description">
+						If the view is currently inserted into the DOM of a parent view, this     property will point to the parent of the view.</div>
+				
+
+					<div id="previousKeyView"></div>
+					<div class="fixedFont">
+					
+					
+					<b>previousKeyView</b>
+					
+					</div>
+					<div class="description">
+						Optionally points to the previous key view that should gain focus when     tabbing through the interface. If this is not set then the previous      key view will be set automatically to the previous child.</div>
+				
+
+					<div id="shouldInheritCursor"></div>
+					<div class="fixedFont">
+					
+					
+					<b>shouldInheritCursor</b>
+					
+					</div>
+					<div class="description">
+						A child view without a cursor of its own inherits its parent's cursor by     default.  Set this to NO to prevent this behavior.</div>
+				
+
+					<div id="tagName"></div>
+					<div class="fixedFont">
+					
+					
+					<b>tagName</b>
+					
+					</div>
+					<div class="description">
+						Tag name for the view's outer element.  The tag name is only used when     a layer is first created.  If you change the tagName for an element, you     must destroy and recreate the view layer.</div>
+				
+
+					<div id="toolTip"></div>
+					<div class="fixedFont">
+					
+					
+					<b>toolTip</b>
+					
+					</div>
+					<div class="description">
+						Tool tip property that will be set to the title attribute on the HTML      rendered element.</div>
+				
+
+					<div id="touchBoundary"></div>
+					<div class="fixedFont">
+					
+					
+					<b>touchBoundary</b>
+					
+					</div>
+					<div class="description">
+						A boundary set of distances outside which the touch will not be considered "inside" the view anymore.          By default, up to 50px on each side.</div>
+				
+
+					<div id="useStaticLayout"></div>
+					<div class="fixedFont">
+					
+					
+					<b>useStaticLayout</b>
+					
+					</div>
+					<div class="description">
+						Activates use of brower's static layout.  You can apply this mixin and     still use absolute positioning.  To activate static positioning, set this     property to YES.</div>
+				
+
+					<div id="wantsAcceleratedLayer"></div>
+					<div class="fixedFont">
+					
+					
+					<b>wantsAcceleratedLayer</b>
+					
+					</div>
+					<div class="description">
+						Setting wantsAcceleratedLayer to YES will use 3d transforms to move the     layer when available.</div>
+				<!-- ============================== method details ========================= --><h2>Method Detail</h2>
+					<hr />
+					<div id="$"></div>
+					<div class="fixedFont"><span class="light">SC.CoreQuery</span>
+					<b>$</b>(sel)
+					
+					</div>
+					<div class="description">
+						Get a CoreQuery object for this view's layer, or pass in a selector string     to get a CoreQuery object for a DOM node nested within this layer.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{String}</span> <b>sel</b>
+									
+								</span>
+								<span class="detail">a CoreQuery-compatible selector string</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{SC.CoreQuery}</span> the CoreQuery object for the DOM node</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="adjust"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>adjust</b>(key, value)
+					
+					</div>
+					<div class="description">
+						This convenience method will take the current layout, apply any changes     you pass and set it again.  It is more convenient than having to do this     yourself sometimes.          You can pass just a key/value pair or a hash with several pairs.  You can     also pass a null value to delete a property.          This method will avoid actually setting the layout if the value you pass     does not edit the layout.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{String|Hash}</span> <b>key</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Object}</span> <b>value</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="appendChild"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>appendChild</b>(view)
+					
+					</div>
+					<div class="description">
+						Appends the specified view to the end of the receivers childViews array.       This is equivalent to calling insertBefore(view, null);
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>view</b>
+									
+								</span>
+								<span class="detail">{SC.View} the view to insert</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> the receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="applyLocalizedAttributes"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>applyLocalizedAttributes</b>(loc)
+					
+					</div>
+					<div class="description">
+						Internal method actually updates the localizated attributes on the view     class.  This is overloaded in design mode to also save the attributes.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>loc</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="awake"></div>
+					<div class="fixedFont"><span class="light">void</span>
+					<b>awake</b>()
+					
+					</div>
+					<div class="description">
+						Wakes up the view. The default implementation immediately syncs any      bindings, which may cause the view to need its display updated. You      can override this method to perform any additional setup. Be sure to      call sc_super to setup bindings and to call awake on childViews.          It is best to awake a view before you add it to the DOM.  This way when     the DOM is generated, it will have the correct initial values and will     not require any additional setup.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{void}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="beginLiveResize"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>beginLiveResize</b>()
+					
+					</div>
+					<div class="description">
+						Call this method when you plan to begin a live resize.  This will      notify the receiver view and any of its children that are interested     that the resize is about to begin.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="bind"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>bind</b>(keyName, path)
+					
+					</div>
+					<div class="description">
+						Helper adds a binding to a design
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>keyName</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>path</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="childView"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>childView</b>(cv)
+					
+					</div>
+					<div class="description">
+						Helper adds the childView
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>cv</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="childViewsObserver"></div>
+					<div class="fixedFont">
+					<b>childViewsObserver</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="classNames"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>classNames</b>(sc)
+					
+					</div>
+					<div class="description">
+						Helper applies the classNames to the prototype
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>sc</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="clippingFrame"></div>
+					<div class="fixedFont">
+					<b>clippingFrame</b>()
+					
+					</div>
+					<div class="description">
+						The clipping frame returns the visible portion of the view, taking into     account the contentClippingFrame of the parent view.  Keep in mind that      the clippingFrame is in the context of the view itself, not it's parent      view.          Normally this will be calculated based on the intersection of your own      clippingFrame and your parentView's contentClippingFrame.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="computeFrameWithParentFrame"></div>
+					<div class="fixedFont"><span class="light">Rect</span>
+					<b>computeFrameWithParentFrame</b>(pdim)
+					
+					</div>
+					<div class="description">
+						Computes what the frame of this view would be if the parent were resized     to the passed dimensions.  You can use this method to project the size of     a frame based on the resize behavior of the parent.          This method is used especially by the scroll view to automatically      calculate when scrollviews should be visible.        Passing null for the parent dimensions will use the actual current      parent dimensions.  This is the same method used to calculate the current     frame when it changes.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Rect}</span> <b>pdim</b>
+									
+								</span>
+								<span class="detail">the projected parent dimensions</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Rect}</span> the computed frame</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="computeParentDimensions"></div>
+					<div class="fixedFont">
+					<b>computeParentDimensions</b>(frame)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>frame</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="containerLayer"></div>
+					<div class="fixedFont">
+					<b>containerLayer</b>()
+					
+					</div>
+					<div class="description">
+						Returns the DOM element that should be used to hold child views when they     are added/remove via DOM manipulation.  The default implementation simply     returns the layer itself.  You can override this to return a DOM element     within the layer.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="contentClippingFrame"></div>
+					<div class="fixedFont">
+					<b>contentClippingFrame</b>()
+					
+					</div>
+					<div class="description">
+						The clipping frame child views should intersect with.  Normally this is      the same as the regular clippingFrame.  However, you may override this      method if you want the child views to actually draw more or less content     than is actually visible for some reason.          Usually this is only used by the ScrollView to optimize drawing on touch     devices.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="contextMenu"></div>
+					<div class="fixedFont">
+					<b>contextMenu</b>(evt)
+					
+					</div>
+					<div class="description">
+						Used to block the contextMenu per view.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>evt</b>
+									
+								</span>
+								<span class="detail">{SC.Event} the contextmenu event</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item">YES if the contextmenu can show up</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="convertFrameFromView"></div>
+					<div class="fixedFont"><span class="light">Rect</span>
+					<b>convertFrameFromView</b>(frame, targetView)
+					
+					</div>
+					<div class="description">
+						Converts a frame offset in the coordinates of another view system to the      receiver's view.          Note that the convext of a view's frame is relative to the view's      parentFrame.  For example, if you want to convert the frame of view that     belongs to another view to the receiver's frame you would do:          {{{       var frame = view.get('frame');       var newFrame = this.convertFrameFromView(frame, view.get('parentView'));     }}}
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Rect}</span> <b>frame</b>
+									
+								</span>
+								<span class="detail">the source frame</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> <b>targetView</b>
+									
+								</span>
+								<span class="detail">the target view to convert to</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Rect}</span> converted frame</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="convertFrameToView"></div>
+					<div class="fixedFont"><span class="light">Rect</span>
+					<b>convertFrameToView</b>(frame, targetView)
+					
+					</div>
+					<div class="description">
+						Converts a frame from the receiver's offset to the target offset.  Both     the receiver and the target must belong to the same pane.  If you pass     null, the conversion will be to the pane level.          Note that the context of a view's frame is the view's parent frame.  In     other words, if you want to convert the frame of your view to the global     frame, then you should do:          {{{       var pv = this.get('parentView'), frame = this.get('frame');       var newFrame = pv ? pv.convertFrameToView(frame, null) : frame;     }}}
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Rect}</span> <b>frame</b>
+									
+								</span>
+								<span class="detail">the source frame</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> <b>targetView</b>
+									
+								</span>
+								<span class="detail">the target view to convert to</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Rect}</span> converted frame</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="convertLayoutToAnchoredLayout"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>convertLayoutToAnchoredLayout</b>(layout, parentFrame)
+					
+					</div>
+					<div class="description">
+						Convert any layout to a Top, Left, Width, Height layout
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>layout</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>parentFrame</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="convertLayoutToCustomLayout"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>convertLayoutToCustomLayout</b>(layout, layoutParams, parentFrame)
+					
+					</div>
+					<div class="description">
+						For now can only convert Top/Left/Width/Height to a Custom Layout
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>layout</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>layoutParams</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>parentFrame</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="create"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>create</b>()
+					
+					</div>
+					<div class="description">
+						Create a new view with the passed attributes hash.  If you have the      Designer module loaded, this will also create a peer designer if needed.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="createChildView"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>createChildView</b>(viewClass, attrs)
+					
+					</div>
+					<div class="description">
+						Instantiates a view to be added to the childViews array during view      initialization. You generally will not call this method directly unless      you are overriding createChildViews(). Note that this method will      automatically configure the correct settings on the new view instance to      act as a child of the parent.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Class}</span> <b>viewClass</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Hash}</span> <b>attrs</b>
+									
+								</span>
+								<span class="detail">optional attributes to add</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> new instance</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="createChildViews"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>createChildViews</b>()
+					
+					</div>
+					<div class="description">
+						This method is called when your view is first created to setup any  child      views that are already defined on your class.  If any are found, it will      instantiate them for you.          The default implementation of this method simply steps through your      childViews array, which is expects to either be empty or to contain View      designs that can be instantiated          Alternatively, you can implement this method yourself in your own      subclasses to look for views defined on specific properties and then build      a childViews array yourself.          Note that when you implement this method yourself, you should never      instantiate views directly.  Instead, you should use      this.createChildView() method instead.  This method can be much faster in      a production environment than creating views yourself.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="createLayer"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>createLayer</b>()
+					
+					</div>
+					<div class="description">
+						Creates the layer by creating a renderContext and invoking the view's     render() method.  This will only create the layer if the layer does not     already exist.          When you create a layer, it is expected that your render() method will     also render the HTML for all child views as well.  This method will      notify the view along with any of its childViews that its layer has been     created.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="design"></div>
+					<div class="fixedFont">&lt;static&gt; <span class="light">Class</span>
+					<span class="light">SC.View.</span><b>design</b>(attrs)
+					
+					</div>
+					<div class="description">
+						This method works just like extend() except that it will also preserve     the passed attributes in case you want to use a view builder later, if      needed.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Hash}</span> <b>attrs</b>
+									
+								</span>
+								<span class="detail">Attributes to add to view</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Class}</span> SC.View subclass to create</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="destroy"></div>
+					<div class="fixedFont">
+					<b>destroy</b>()
+					
+					</div>
+					<div class="description">
+						You must call this method on a view to destroy the view (and all of its      child views). This will remove the view from any parent node, then make      sure that the DOM element managed by the view can be released by the      memory manager.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="destroyLayer"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>destroyLayer</b>()
+					
+					</div>
+					<div class="description">
+						Destroys any existing layer along with the layer for any child views as      well.  If the view does not currently have a layer, then this method will     do nothing.          If you implement willDestroyLayer() on your view or if any mixins      implement willDestroLayerMixin(), then this method will be invoked on your     view before your layer is destroyed to give you a chance to clean up any     event handlers, etc.          If you write a willDestroyLayer() handler, you can assume that your      didCreateLayer() handler was called earlier for the same layer.          Normally you will not call or override this method yourself, but you may     want to implement the above callbacks when it is run.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="didBecomeKeyResponderFrom"></div>
+					<div class="fixedFont">
+					<b>didBecomeKeyResponderFrom</b>(responder)
+					
+					</div>
+					<div class="description">
+						Invoked just after the responder gains key responder status.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>responder</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="didLoseKeyResponderTo"></div>
+					<div class="fixedFont">
+					<b>didLoseKeyResponderTo</b>(responder)
+					
+					</div>
+					<div class="description">
+						Invokved just after the responder loses key responder status.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>responder</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="displayDidChange"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>displayDidChange</b>()
+					
+					</div>
+					<div class="description">
+						This method is invoked whenever a display property changes.  It will set      the layerNeedsUpdate method to YES.  If you need to perform additional     setup whenever the display changes, you can override this method as well.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="endLiveResize"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>endLiveResize</b>()
+					
+					</div>
+					<div class="description">
+						Call this method when you are finished with a live resize.  This will     notify the receiver view and any of its children that are interested     that the live resize has ended.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="findLayerInParentLayer"></div>
+					<div class="fixedFont"><span class="light">DOMElement</span>
+					<b>findLayerInParentLayer</b>(parentLayer)
+					
+					</div>
+					<div class="description">
+						Attempts to discover the layer in the parent layer.  The default      implementation looks for an element with an ID of layerId (or the view's     guid if layerId is null).  You can override this method to provide your     own form of lookup.  For example, if you want to discover your layer using     a CSS class name instead of an ID.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{DOMElement}</span> <b>parentLayer</b>
+									
+								</span>
+								<span class="detail">the parent's DOM layer</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{DOMElement}</span> the discovered layer</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="frame"></div>
+					<div class="fixedFont">
+					<b>frame</b>()
+					
+					</div>
+					<div class="description">
+						Frame describes the current bounding rect for your view.  This is always     measured from the top-left corner of the parent view.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="hasAcceleratedLayer"></div>
+					<div class="fixedFont">
+					<b>hasAcceleratedLayer</b>()
+					
+					</div>
+					<div class="description">
+						Specifies whether 3d transforms can be used to move the layer.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="insertBefore"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>insertBefore</b>(view, beforeView)
+					
+					</div>
+					<div class="description">
+						Insert the view into the the receiver's childNodes array.          The view will be added to the childNodes array before the beforeView.  If      beforeView is null, then the view will be added to the end of the array.       This will also add the view's rootElement DOM node to the receivers      containerElement DOM node as a child.          If the specified view already belongs to another parent, it will be      removed from that view first.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> <b>view</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> <b>beforeView</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> the receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="insertText"></div>
+					<div class="fixedFont"><span class="light">Object</span>
+					<b>insertText</b>(event)
+					
+					</div>
+					<div class="description">
+						This method is invoked by interpretKeyEvents() when you receive a key      event matching some plain text.  You can use this to actually insert the      text into your application, if needed.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.Event}</span> <b>event</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Object}</span> receiver or object that handled event</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="interpretKeyEvents"></div>
+					<div class="fixedFont"><span class="light">Object</span>
+					<b>interpretKeyEvents</b>(event)
+					
+					</div>
+					<div class="description">
+						This method will process a key input event, attempting to convert it to      an appropriate action method and sending it up the responder chain.  The      event is converted using the SC.KEY_BINDINGS hash, which maps key events      into method names.  If no key binding is found, then the key event will      be passed along using an insertText() method.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.Event}</span> <b>event</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Object}</span> object that handled event, if any</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="isContextMenuEnabled"></div>
+					<div class="fixedFont">
+					<b>isContextMenuEnabled</b>()
+					
+					</div>
+					<div class="description">
+						By default we don't disable the context menu. Overriding this property    can enable/disable the context menu per view.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="isDescendantOf"></div>
+					<div class="fixedFont">
+					<b>isDescendantOf</b>(view)
+					
+					</div>
+					<div class="description">
+						Returns YES if the receiver is a subview of a given view or if it’s      identical to that view. Otherwise, it returns NO.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>view</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="isEnabledInPane"></div>
+					<div class="fixedFont">
+					<b>isEnabledInPane</b>()
+					
+					</div>
+					<div class="description">
+						Computed property returns YES if the view and all of its parent views     are enabled in the pane.  You should use this property when deciding      whether to respond to an incoming event or not.          This property is not observable.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="layer"></div>
+					<div class="fixedFont">
+					<b>layer</b>(key, value)
+					
+					</div>
+					<div class="description">
+						Returns the current layer for the view.  The layer for a view is only      generated when the view first becomes visible in the window and even      then it will not be computed until you request this layer property.          If the layer is not actually set on the view itself, then the layer will     be found by calling this.findLayerInParentLayer().          You can also set the layer by calling set on this property.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>key</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>value</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="layerId"></div>
+					<div class="fixedFont">
+					<b>layerId</b>(key, value)
+					
+					</div>
+					<div class="description">
+						The ID to use when trying to locate the layer in the DOM.  If you do not     set the layerId explicitly, then the view's GUID will be used instead.     This ID must be set at the time the view is created.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>key</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>value</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="layerIdDidChange"></div>
+					<div class="fixedFont">
+					<b>layerIdDidChange</b>()
+					
+					</div>
+					<div class="description">
+						Handles changes in the layer id.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="layout"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>layout</b>(layout)
+					
+					</div>
+					<div class="description">
+						Helper applies the layout to the prototype.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>layout</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="layoutChildViews"></div>
+					<div class="fixedFont"><span class="light">void</span>
+					<b>layoutChildViews</b>()
+					
+					</div>
+					<div class="description">
+						Applies the current layout to the layer.  This method is usually only     called once per runloop.  You can override this method to provide your      own layout updating method if you want, though usually the better option     is to override the layout method from the parent view.          The default implementation of this method simply calls the renderLayout()     method on the views that need layout.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{void}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="layoutChildViewsIfNeeded"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>layoutChildViewsIfNeeded</b>(isVisible)
+					
+					</div>
+					<div class="description">
+						Called your layout method if the view currently needs to layout some     child views.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Boolean}</span> <b>isVisible</b>
+									
+								</span>
+								<span class="detail">if true assume view is visible even if it is not.</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="layoutDidChange"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>layoutDidChange</b>()
+					
+					</div>
+					<div class="description">
+						This method is called whenever a property changes that invalidates the      layout of the view.  Changing the layout will do this automatically, but      you can add others if you want.      Implementation Note:  In a traditional setup, we would simply observe     'layout' here, but as described above in the documentation for our custom     implementation of propertyDidChange(), this method must always run     immediately after 'layout' is updated to avoid the potential for stale     (incorrect) cached 'frame' values.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="layoutDidChangeFor"></div>
+					<div class="fixedFont"><span class="light">void</span>
+					<b>layoutDidChangeFor</b>(childView)
+					
+					</div>
+					<div class="description">
+						One of two methods that are invoked whenever one of your childViews      layout changes.  This method is invoked everytime a child view's layout     changes to give you a chance to record the information about the view.            Since this method may be called many times during a single run loop, you     should keep this method pretty short.  The other method called when layout     changes, layoutChildViews(), is invoked only once at the end of      the run loop.  You should do any expensive operations (including changing     a childView's actual layer) in this other method.          Note that if as a result of running this method you decide that you do not     need your layoutChildViews() method run later, you can set the      childViewsNeedsLayout property to NO from this method and the layout      method will not be called layer.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> <b>childView</b>
+									
+								</span>
+								<span class="detail">the view whose layout has changed.</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{void}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="layoutStyle"></div>
+					<div class="fixedFont">
+					<b>layoutStyle</b>()
+					
+					</div>
+					<div class="description">
+						layoutStyle describes the current styles to be written to your element     based on the layout you defined.  Both layoutStyle and frame reset when     you edit the layout property.  Both are read only.          Computes the layout style settings needed for the current anchor.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="layoutView"></div>
+					<div class="fixedFont">
+					<b>layoutView</b>()
+					
+					</div>
+					<div class="description">
+						The view responsible for laying out this view.  The default version      returns the current parent view.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="loc"></div>
+					<div class="fixedFont">&lt;static&gt; <span class="light">SC.View</span>
+					<span class="light">SC.View.</span><b>loc</b>(loc, rootElement)
+					
+					</div>
+					<div class="description">
+						Applies the passed localization hash to the component views.  Call this     method before you call create().  Returns the receiver.  Typically you     will do something like this:          view = SC.View.design({...}).loc(localizationHash).create();
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Hash}</span> <b>loc</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>rootElement</b>
+									
+								</span>
+								<span class="detail">{String} optional rootElement with prepped HTML</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="localization"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>localization</b>(attrs, rootElement)
+					
+					</div>
+					<div class="description">
+						Used to construct a localization for a view.  The default implementation     will simply return the passed attributes.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>attrs</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>rootElement</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="nextResponder"></div>
+					<div class="fixedFont">
+					<b>nextResponder</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="nextValidKeyView"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>nextValidKeyView</b>()
+					
+					</div>
+					<div class="description">
+						Computes the next valid key view, possibly returning the receiver or null.     This is the next key view that acceptsFirstResponder.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="pane"></div>
+					<div class="fixedFont">
+					<b>pane</b>()
+					
+					</div>
+					<div class="description">
+						The current pane.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="parentViewDidChange"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>parentViewDidChange</b>()
+					
+					</div>
+					<div class="description">
+						This method is called whenever the receiver's parentView has changed.       The default implementation of this method marks the view's display      location as dirty so that it will update at the end of the run loop.          You will not usually need to override or call this method yourself, though     if you manually patch the parentView hierarchy for some reason, you should     call this method to notify the view that it's parentView has changed.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="parentViewDidResize"></div>
+					<div class="fixedFont"><span class="light">void</span>
+					<b>parentViewDidResize</b>()
+					
+					</div>
+					<div class="description">
+						This method may be called on your view whenever the parent view resizes.          The default version of this method will reset the frame and then call      viewDidResize().  You will not usually override this method, but you may     override the viewDidResize() method.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{void}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="performKeyEquivalent"></div>
+					<div class="fixedFont"><span class="light">Boolean</span>
+					<b>performKeyEquivalent</b>(keystring, evt)
+					
+					</div>
+					<div class="description">
+						Recursively travels down the view hierarchy looking for a view that      implements the key equivalent (returning to YES to indicate it handled      the event).  You can override this method to handle specific key      equivalents yourself.          The keystring is a string description of the key combination pressed.     The evt is the event itself. If you handle the equivalent, return YES.     Otherwise, you should just return sc_super.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{String}</span> <b>keystring</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.Event}</span> <b>evt</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Boolean}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="prepareContext"></div>
+					<div class="fixedFont"><span class="light">void</span>
+					<b>prepareContext</b>(context, firstTime)
+					
+					</div>
+					<div class="description">
+						Invoked by createLayer() and updateLayer() to actually render a context.     This method calls the render() method on your view along with any      renderMixin() methods supplied by mixins you might have added.          You should not override this method directly.  However, you might call     this method if you choose to override updateLayer() or createLayer().
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.RenderContext}</span> <b>context</b>
+									
+								</span>
+								<span class="detail">the render context</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Boolean}</span> <b>firstTime</b>
+									
+								</span>
+								<span class="detail">YES if this is creating a layer</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{void}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="previousValidKeyView"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>previousValidKeyView</b>()
+					
+					</div>
+					<div class="description">
+						Computes the previous valid key view, possibly returning the receiver or      null.  This is the previous key view that acceptsFirstResponder.
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="prop"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>prop</b>(keyName, value)
+					
+					</div>
+					<div class="description">
+						Helper sets a generic property on a design.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>keyName</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>value</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="propertyDidChange"></div>
+					<div class="fixedFont">
+					<b>propertyDidChange</b>(key, value, _keepCache)
+					
+					</div>
+					<div class="description">
+						The 'frame' property depends on the 'layout' property as well as the     parent view’s frame.  In order to properly invalidate any cached values,     we need to invalidate the cache whenever 'layout' changes.  However,     observing 'layout' does not guarantee that; the observer might not be run     immediately.          In order to avoid any window of opportunity where the cached frame could     be invalid, we need to force layoutDidChange() to always immediately run     whenever 'layout' is set.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>key</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>value</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<b>_keepCache</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="recomputeIsVisibleInWindow"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>recomputeIsVisibleInWindow</b>(parentViewIsVisible)
+					
+					</div>
+					<div class="description">
+						Recomputes the isVisibleInWindow property based on the visibility of the      view and its parent.  If the recomputed value differs from the current      isVisibleInWindow state, this method will also call      recomputIsVisibleInWindow() on its child views as well.  As an optional      optimization, you can pass the isVisibleInWindow state of the parentView      if you already know it.          You will not generally need to call or override this method yourself. It      is used by the SC.View hierarchy to relay window visibility changes up      and down the chain.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>parentViewIsVisible</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="removeAllChildren"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>removeAllChildren</b>()
+					
+					</div>
+					<div class="description">
+						Removes all children from the parentView.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="removeChild"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>removeChild</b>(view)
+					
+					</div>
+					<div class="description">
+						Removes the child view from the parent view.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> <b>view</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="removeFromParent"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>removeFromParent</b>()
+					
+					</div>
+					<div class="description">
+						Removes the view from its parentView, if one is found.  Otherwise     does nothing.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="render"></div>
+					<div class="fixedFont"><span class="light">void</span>
+					<b>render</b>(context, firstTime)
+					
+					</div>
+					<div class="description">
+						Invoked whenever your view needs to be rendered, including when the view's     layer is first created and any time in the future when it needs to be      updated.          You will normally override this method in your subclassed views to      provide whatever drawing functionality you will need in order to      render your content.          You can use the passed firstTime property to determine whether or not      you need to completely re-render the view or only update the surrounding     HTML.            The default implementation of this method simply calls renderChildViews()     if this is the first time you are rendering, or null otherwise.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.RenderContext}</span> <b>context</b>
+									
+								</span>
+								<span class="detail">the render context</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Boolean}</span> <b>firstTime</b>
+									
+								</span>
+								<span class="detail">YES if this is creating a layer</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{void}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="renderChildViews"></div>
+					<div class="fixedFont"><span class="light">SC.RenderContext</span>
+					<b>renderChildViews</b>(context, firstName)
+					
+					</div>
+					<div class="description">
+						Your render method should invoke this method to render any child views,     especially if this is the first time the view will be rendered.  This will     walk down the childView chain, rendering all of the children in a nested     way.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.RenderContext}</span> <b>context</b>
+									
+								</span>
+								<span class="detail">the context</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Boolean}</span> <b>firstName</b>
+									
+								</span>
+								<span class="detail">true if the layer is being created</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{SC.RenderContext}</span> the render context</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="renderContext"></div>
+					<div class="fixedFont"><span class="light">SC.RenderContext</span>
+					<b>renderContext</b>(tagNameOrElement)
+					
+					</div>
+					<div class="description">
+						Creates a new renderContext with the passed tagName or element.  You     can override this method to provide further customization to the context     if needed.  Normally you will not need to call or override this method.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>tagNameOrElement</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{SC.RenderContext}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="renderLayout"></div>
+					<div class="fixedFont"><span class="light">void</span>
+					<b>renderLayout</b>(the, firstTime)
+					
+					</div>
+					<div class="description">
+						Default method called by the layout view to actually apply the current     layout to the layer.  The default implementation simply assigns the      current layoutStyle to the layer.  This method is also called whenever     the layer is first created.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.RenderContext}</span> <b>the</b>
+									
+								</span>
+								<span class="detail">render context</span>
+							
+								<span class="item">
+									<b>firstTime</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{void}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="replaceAllChildren"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>replaceAllChildren</b>(views)
+					
+					</div>
+					<div class="description">
+						Replaces the current array of child views with the new array of child      views.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Array}</span> <b>views</b>
+									
+								</span>
+								<span class="detail">views you want to add</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="replaceChild"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>replaceChild</b>(view, view)
+					
+					</div>
+					<div class="description">
+						Replace the oldView with the specified view in the receivers childNodes      array. This will also replace the DOM node of the oldView with the DOM      node of the new view in the receivers DOM.          If the specified view already belongs to another parent, it will be      removed from that view first.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>view</b>
+									
+								</span>
+								<span class="detail">{SC.View} the view to insert in the DOM</span>
+							
+								<span class="item">
+									<b>view</b>
+									
+								</span>
+								<span class="detail">{SC.View} the view to remove from the DOM.</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> the receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="replaceLayer"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>replaceLayer</b>()
+					
+					</div>
+					<div class="description">
+						Destroys and recreates the current layer.  This can be more efficient than     modifying individual child views.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="scrollToVisible"></div>
+					<div class="fixedFont"><span class="light">Boolean</span>
+					<b>scrollToVisible</b>()
+					
+					</div>
+					<div class="description">
+						Attempt to scroll the view to visible.  This will walk up the parent     view hierarchy looking looking for a scrollable view.  It will then      call scrollToVisible() on it.          Returns YES if an actual scroll took place, no otherwise.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{Boolean}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="selectStart"></div>
+					<div class="fixedFont">
+					<b>selectStart</b>(evt)
+					
+					</div>
+					<div class="description">
+						Default method called when a selectstart event is triggered. This event is      only supported by IE. Used in sproutcore to disable text selection and      IE8 accelerators. The accelerators will be enabled only in      text selectable views. In FF and Safari we use the css style 'allow-select'.          If you want to enable text selection in certain controls is recommended     to override this function to always return YES , instead of setting      isTextSelectable to true.           For example in textfield you dont want to enable textSelection on the text     hint only on the actual text you are entering. You can achieve that by     only overriding this method.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>evt</b>
+									
+								</span>
+								<span class="detail">{SC.Event} the selectstart event</span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item">YES if selectable</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="splitView"></div>
+					<div class="fixedFont">
+					<b>splitView</b>()
+					
+					</div>
+					<div class="description">
+						The current split view this view is embedded in (may be null).
+						
+						
+					</div>
+					
+				
+					<hr />
+					<div id="tagName"></div>
+					<div class="fixedFont">&lt;static&gt; 
+					<span class="light">SC.View.</span><b>tagName</b>(tg)
+					
+					</div>
+					<div class="description">
+						Help applies the tagName
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>tg</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="touchIsInBoundary"></div>
+					<div class="fixedFont">
+					<b>touchIsInBoundary</b>(touch)
+					
+					</div>
+					<div class="description">
+						Returns YES if the provided touch is within the boundary.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>touch</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="updateLayer"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>updateLayer</b>()
+					
+					</div>
+					<div class="description">
+						This is the core method invoked to update a view layer whenever it has      changed.  This method simply creates a render context focused on the      layer element and then calls your render() method.          You will not usually call or override this method directly.  Instead you     should set the layerNeedsUpdate property to YES to cause this method to     run at the end of the run loop, or you can call updateLayerIfNeeded()     to force the layer to update immediately.            Instead of overriding this method, consider overidding the render() method     instead, which is called both when creating and updating a layer.  If you     do not want your render() method called when updating a layer, then you     should override this method instead.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="updateLayerIfNeeded"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>updateLayerIfNeeded</b>(skipIsVisibleInWindowCheck)
+					
+					</div>
+					<div class="description">
+						Updates the layer only if the view is visible onscreen and if      layerNeedsUpdate is set to YES.  Normally you will not invoke this method     directly.  Instead you set the layerNeedsUpdate property to YES and this     method will be called once at the end of the runloop.          If you need to update view's layer sooner than the end of the runloop, you     can call this method directly.  If your view is not visible in the window     but you want it to update anyway, then call this method, passing YES for     the 'skipIsVisibleInWindowCheck' parameter.          You should not override this method.  Instead override updateLayer() or     render().
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>skipIsVisibleInWindowCheck</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="updateLayerLocation"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>updateLayerLocation</b>()
+					
+					</div>
+					<div class="description">
+						This method is called when a view changes its location in the view      hierarchy.  This method will update the underlying DOM-location of the      layer so that it reflects the new location.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="updateLayerLocationIfNeeded"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>updateLayerLocationIfNeeded</b>(force)
+					
+					</div>
+					<div class="description">
+						Calls updateLayerLocation(), but only if the view's layer location     currently needs to be updated.  This method is called automatically at      the end of a run loop if you have called parentViewDidChange() at some     point.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<b>force</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="updateLayout"></div>
+					<div class="fixedFont"><span class="light">SC.View</span>
+					<b>updateLayout</b>()
+					
+					</div>
+					<div class="description">
+						Invoked by the layoutChildViews method to update the layout on a      particular view.  This method creates a render context and calls the      renderLayout() method, which is probably what you want to override instead      of this.          You will not usually override this method, but you may call it if you      implement layoutChildViews() in a view yourself.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> receiver</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="viewDidResize"></div>
+					<div class="fixedFont"><span class="light">void</span>
+					<b>viewDidResize</b>()
+					
+					</div>
+					<div class="description">
+						This method is invoked on your view when the view resizes due to a layout     change or potentially due to the parent view resizing (if your view’s size     depends on the size of your parent view).  You can override this method     to implement your own layout if you like, such as performing a grid      layout.          The default implementation simply notifies about the change to 'frame' and     then calls parentViewDidResize on all of your children.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{void}</span> </span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="viewFor"></div>
+					<div class="fixedFont">&lt;static&gt; <span class="light">SC.View</span>
+					<span class="light">SC.View.</span><b>viewFor</b>(element, attrs)
+					
+					</div>
+					<div class="description">
+						Creates a view instance, first finding the DOM element you name and then     using that as the root element.  You should not use this method very      often, but it is sometimes useful if you want to attach to already      existing HTML.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{String|Element}</span> <b>element</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+								<span class="item">
+									<span class="light fixedFont">{Hash}</span> <b>attrs</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+							<div class="detailList">
+							<span class="heading">Returns:</span>
+							
+								<span class="item"><span class="light fixedFont">{<a href="../symbols/SC.View.html">SC.View</a>}</span> instance</span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="willBecomeKeyResponderFrom"></div>
+					<div class="fixedFont">
+					<b>willBecomeKeyResponderFrom</b>(responder)
+					
+					</div>
+					<div class="description">
+						This method is invoked just before you become the key responder.  The      passed view is the view that is about to lose keyResponder status.  You      can use this to do any setup before the view changes.     Remember that you can gain/lose key responder status either because      another view in the same pane is becoming first responder or because      another pane is about to become key.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.Responder}</span> <b>responder</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+					<hr />
+					<div id="willLoseKeyResponderTo"></div>
+					<div class="fixedFont">
+					<b>willLoseKeyResponderTo</b>(responder)
+					
+					</div>
+					<div class="description">
+						This method is invoked just before you lost the key responder status.       The passed view is the view that is about to gain keyResponder status.       This gives you a chance to do any early setup. Remember that you can      gain/lose key responder status either because another view in the same      pane is becoming first responder or because another pane is about to      become key.
+						
+						
+					</div>
+					
+							<div class="detailList">
+							<span class="heading">Parameters:</span>
+							
+								<span class="item">
+									<span class="light fixedFont">{SC.Responder}</span> <b>responder</b>
+									
+								</span>
+								<span class="detail"></span>
+							
+							</div>
+						
+				
+			<!-- ============================== event details ========================= -->
+</div>

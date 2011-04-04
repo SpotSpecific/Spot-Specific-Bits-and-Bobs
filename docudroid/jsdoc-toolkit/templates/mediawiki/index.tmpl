@@ -1,0 +1,30 @@
+<div class="class-list-box" style="background-color: #F9F9F9; border: 1px solid #AAA; float:right; padding: 10px; margin: 20px;">
+			<p style="font-size: 1.6em; line-height: 1.2em; display:block;">Class index</p>
+			<ul>
+			<for each="thisClass" in="data">{!
+									var classType = "";
+									var classTypePretty = "";
+									if (thisClass.isBuiltin()) {
+										classType += "Built-In_";
+										classTypePretty += "Built-In ";
+									}
+
+									if (thisClass.isNamespace) {
+										if (thisClass.is('FUNCTION')) {
+											classType += "Function_";
+											classTypePretty += "Function ";
+										}
+										classType += "Namespace_";
+										classTypePretty += "Namespace ";
+									}
+									else {
+										classType += "Class_";
+										classTypePretty += "Class ";
+									}
+								!}<li>
+				<p>[[API_Reference:{+classType+}{+thisClass.alias+}|{+classTypePretty+}{+thisClass.alias+} ]]</p>
+				{+resolveLinks(summarize(thisClass.classDesc))+}
+			</li>
+			</for>
+</ul>
+</div>
