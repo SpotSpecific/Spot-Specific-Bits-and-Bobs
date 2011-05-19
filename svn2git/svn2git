@@ -1,0 +1,25 @@
+#!/bin/sh
+
+case $1 in
+"checkout"|"co")
+    Message="Try:\tgit clone $2"
+    ;;
+"update")
+    Message="Try:\tgit pull"
+    ;;
+"revert")
+    Message="Try:\tgit checkout $2"
+    ;;
+"commit")
+    Message="Try:\tgit commit -a\n
+    \tgit push"
+    ;;
+*)
+    Message="Try:\tgit $1 $2 $3 $4 $5\n
+\n
+\n
+Or are you looking for realsvn?"
+    ;;
+esac
+
+echo $Message
