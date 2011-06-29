@@ -4,15 +4,14 @@ A simple dropin shellscript that nags you with wee reminders every time you try 
 
 Pre-requisites
 --------------
-svn
-git
-the ability to insert aliases into your standard shell RC file
-(.bash_profile on MacOS)
+svn  
+git  
+the ability to insert aliases into your standard shell RC file (.bash_profile on MacOS)
 
 Install
 -------
-mv svn2git /usr/local/bin/
-chmod a+x /usr/local/bin/svn2git
+    mv svn2git /usr/local/bin/
+    chmod a+x /usr/local/bin/svn2git
 
 modify your shell RC file and create two aliases
 1. alias realsvn="/usr/bin/svn"
