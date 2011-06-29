@@ -18,4 +18,4 @@ modify your shell RC file and create two aliases
 2. alias svn="/usr/local/bin/svn2git"
 
 MORE INFO
-- [https://github.com/SpotSpecific/Spot-Specific-Bits-and-Bobs/svn2git] (https://github.com/SpotSpecific/Spot-Specific-Bits-and-Bobs/svn2git)
+- [https://github.com/SpotSpecific/Spot-Specific-Bits-and-Bobs/tree/master/svn2git] (https://github.com/SpotSpecific/Spot-Specific-Bits-and-Bobs/tree/master/svn2git)
